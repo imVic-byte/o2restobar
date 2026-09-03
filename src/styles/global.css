@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #09090b;
+  --color-surface: #18181b;
+  --color-surface-hover: #27272a;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-accent: #facc15;
+  --color-accent-hover: #eab308;
+
+  --font-headings: 'Orbitron', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  --animate-fade-up: fade-up 0.5s ease-out forwards;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gold-glow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.12), inset 0 0 10px rgba(250, 204, 21, 0.04);
+    border-color: rgba(250, 204, 21, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(250, 204, 21, 0.32), inset 0 0 18px rgba(250, 204, 21, 0.1);
+    border-color: rgba(250, 204, 21, 0.8);
+  }
+}
+
+@keyframes shimmer-slide {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  30%, 100% {
+    transform: translateX(280%) skewX(-20deg);
+  }
+}
+
+.animate-gold-glow {
+  animation: gold-glow 3.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer-slide 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@layer components {
+  .ds-card {
+    @apply relative flex flex-col gap-2 p-5 bg-zinc-950/60 border border-accent/30 hover:border-accent shadow-xl shadow-black/70 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_15px_rgba(250,204,21,0.15)];
+  }
+  
+  .ds-price-badge {
+    @apply inline-flex items-center px-3 py-1 bg-accent/15 border border-accent/50 text-accent font-headings font-bold text-sm tracking-wider shadow-[0_0_8px_rgba(250,204,21,0.2)] rounded-none;
+  }
+
+  .ds-tabs-active {
+    @apply flex-1 py-2.5 px-4 flex items-center justify-center gap-2 font-headings text-sm uppercase tracking-wider bg-accent/15 border border-accent text-accent font-bold rounded-xs shadow-[0_0_15px_rgba(250,204,21,0.25)] transition-all;
+  }
+
+  .ds-tabs-inactive {
+    @apply flex-1 py-2.5 px-4 flex items-center justify-center gap-2 font-headings text-sm uppercase tracking-wider bg-zinc-950/50 border border-zinc-800 text-text-secondary hover:text-text-primary hover:border-accent/40 rounded-xs transition-all;
+  }
+}
+

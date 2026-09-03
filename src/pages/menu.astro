@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import menuBarData from '../data/menu_bar.json';
+import menuComidaData from '../data/menu_comida.json';
+
+const barCategories = menuBarData.menu_bar;
+const foodCategories = menuComidaData.menu_comida;
+---
+<Layout>
+  <!-- Script síncrono que corre antes de pintar el DOM para cargar inmediatamente la pestaña seleccionada sin parpadeos -->
+  <script is:inline>
+    (function() {
+      const tab = new URLSearchParams(window.location.search).get('tab');
+      if (tab === 'comida') {
+        const style = document.createElement('style');
+        style.id = 'instantTabStyle';
+        style.textContent = `
+          #containerBar { display: none !important; }
+          #containerComida { display: flex !important; }
+          #tabBar { 
+            background-color: rgba(9, 9, 11, 0.5) !important;
+            border-color: rgb(39 39 42) !important;
+            color: rgb(161 161 170) !important;
+            box-shadow: none !important;
+          }
+          #tabComida { 
+            background-color: rgba(250, 204, 21, 0.15) !important;
+            border-color: rgb(250 204 21) !important;
+            color: rgb(250 204 21) !important;
+            box-shadow: 0 0 15px rgba(250, 204, 21, 0.25) !important;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    })();
+  </script>
+  <header class="fixed top-0 left-0 w-full bg-background/20 backdrop-blur-md z-50 border-b border-accent/20 shadow-lg shadow-black/50 transition-all duration-300" id="mainHeader">
+    <div class="max-w-3xl mx-auto px-4 py-2 flex flex-col gap-3">
+      
+      <div class="flex items-center relative w-full h-20 transition-all duration-300" id="headerTopRow">
+        <div id="logoContainer" class="flex justify-start w-full transition-all duration-300">
+          <a href="/" class="block">
+            <img src="/images/logo.webp" alt="O2 Restobar Logo" id="logoImg" class="h-10 w-auto object-contain drop-shadow-md transition-all duration-300" />
+          </a>
+        </div>
+        
+        <button id="searchTrigger" class="text-text-primary hover:text-accent transition-colors absolute right-0 top-1/2 -translate-y-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+      </div>
+
+      <div id="searchContainer" class="relative hidden opacity-0 transition-opacity duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-3 top-1/2 -translate-y-1/2 text-accent/50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input 
+          type="search" 
+          id="searchInput" 
+          placeholder="Buscar especialidades..." 
+          class="w-full bg-surface/40 border border-accent/50 rounded-xs pl-10 pr-10 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all font-body"
+        />
+        <button id="closeSearch" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-accent">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="flex gap-3">
+        <button id="tabBar" class="ds-tabs-active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8"/><path d="M12 11v11"/><path d="m19 3-7 8-7-8Z"/></svg>
+          Carta de Bar
+        </button>
+        <button id="tabComida" class="ds-tabs-inactive">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+          Carta de Comida
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent" class="max-w-3xl mx-auto p-4 flex flex-col gap-6 min-h-screen transition-all duration-300" style="padding-top: 155px;">
+
+    <!-- Contenedor Carta de Bar -->
+    <div id="containerBar" class="flex flex-col gap-8 animate-fade-up">
+
+      {barCategories.map((cat) => (
+        <section class="category-section">
+          <!-- Cabecera de Categoría con divisores dorados y estrellas -->
+          <div class="flex items-center gap-4 my-6">
+            <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-accent/50 to-accent/80"></div>
+            <h2 class="font-headings text-lg md:text-xl font-bold uppercase tracking-widest text-accent flex items-center gap-2 drop-shadow-[0_0_6px_rgba(250,204,21,0.3)]">
+              <span class="text-xs">✦</span>
+              {cat.categoria}
+              <span class="text-xs">✦</span>
+            </h2>
+            <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent via-accent/50 to-accent/80"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {cat.items.map((item) => (
+              <Card nombre={item.nombre} descripcion={item.descripcion} precio={item.precio} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Contenedor Carta de Comida -->
+    <div id="containerComida" class="flex flex-col gap-8 hidden animate-fade-up">
+      <!-- Banner Cabecera de Comida (Estilo Congruente con el Hero) -->
+
+      {foodCategories.map((cat) => (
+        <section class="category-section">
+          <!-- Cabecera de Categoría con divisores dorados y estrellas -->
+          <div class="flex items-center gap-4 my-6">
+            <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-accent/50 to-accent/80"></div>
+            <h2 class="font-headings text-lg md:text-xl font-bold uppercase tracking-widest text-accent flex items-center gap-2 drop-shadow-[0_0_6px_rgba(250,204,21,0.3)]">
+              <span class="text-xs">✦</span>
+              {cat.categoria}
+              <span class="text-xs">✦</span>
+            </h2>
+            <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent via-accent/50 to-accent/80"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {cat.items.map((item) => (
+              <Card nombre={item.nombre} descripcion={item.descripcion} precio={item.precio} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const tabBar = document.getElementById('tabBar');
+  const tabComida = document.getElementById('tabComida');
+  const containerBar = document.getElementById('containerBar');
+  const containerComida = document.getElementById('containerComida');
+  const searchInput = document.getElementById('searchInput');
+  const sections = document.querySelectorAll('.category-section');
+  
+  const searchTrigger = document.getElementById('searchTrigger');
+  const closeSearch = document.getElementById('closeSearch');
+  const searchContainer = document.getElementById('searchContainer');
+  const logoContainer = document.getElementById('logoContainer');
+  const logoImg = document.getElementById('logoImg');
+  const mainContent = document.getElementById('mainContent');
+
+  searchTrigger.addEventListener('click', () => {
+    searchTrigger.classList.add('hidden');
+    logoContainer.classList.remove('justify-start');
+    logoContainer.classList.add('justify-center');
+    logoImg.classList.remove('h-10');
+    logoImg.classList.add('h-20');
+    mainContent.style.paddingTop = '250px';
+    
+    searchContainer.classList.remove('hidden');
+    setTimeout(() => {
+      searchContainer.classList.remove('opacity-0');
+      searchInput.focus();
+    }, 10);
+  });
+
+  closeSearch.addEventListener('click', () => {
+    searchContainer.classList.add('opacity-0');
+    setTimeout(() => {
+      searchContainer.classList.add('hidden');
+      searchTrigger.classList.remove('hidden');
+    }, 300);
+    
+    logoContainer.classList.remove('justify-center');
+    logoContainer.classList.add('justify-start');
+    logoImg.classList.remove('h-20');
+    logoImg.classList.add('h-10');
+    mainContent.style.paddingTop = '150px';
+    
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input'));
+  });
+
+  function switchTab(activeTab, inactiveTab, activeContainer, inactiveContainer, tabName) {
+    const instantStyle = document.getElementById('instantTabStyle');
+    if (instantStyle) instantStyle.remove();
+
+    activeTab.className = 'ds-tabs-active';
+    inactiveTab.className = 'ds-tabs-inactive';
+    activeContainer.classList.remove('hidden');
+    inactiveContainer.classList.add('hidden');
+
+    if (tabName) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', tabName);
+      window.history.replaceState(null, '', url.toString());
+    }
+  }
+
+  tabBar.addEventListener('click', () => {
+    switchTab(tabBar, tabComida, containerBar, containerComida, 'bar');
+  });
+
+  tabComida.addEventListener('click', () => {
+    switchTab(tabComida, tabBar, containerComida, containerBar, 'comida');
+  });
+
+  searchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+
+    sections.forEach(section => {
+      let hasVisibleCards = false;
+      const sectionCards = section.querySelectorAll('.menu-item');
+
+      sectionCards.forEach(card => {
+        const nombre = card.getAttribute('data-nombre') || '';
+        const desc = card.getAttribute('data-descripcion') || '';
+        
+        if (nombre.includes(term) || desc.includes(term)) {
+          card.style.display = '';
+          hasVisibleCards = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      section.style.display = hasVisibleCards ? '' : 'none';
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.menu-item').forEach(card => {
+    card.classList.add('opacity-0');
+    observer.observe(card);
+  });
+
+  // Sincronizar estado inicial silenciosamente cuando el bundle JS termina de cargar
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('tab') === 'comida') {
+    tabComida.className = 'ds-tabs-active';
+    tabBar.className = 'ds-tabs-inactive';
+    containerComida.classList.remove('hidden');
+    containerBar.classList.add('hidden');
+    const instantStyle = document.getElementById('instantTabStyle');
+    if (instantStyle) instantStyle.remove();
+  }
+</script>

@@ -1,0 +1,49 @@
+﻿{
+  "menu_bar": [
+    {
+      "categoria": "Especialidades y Mocktails",
+      "items": [
+        { "nombre": "HAWAI", "descripcion": "Crema de coco, licor malibú, gin, ron blanco.", "precio": 8000 },
+        { "nombre": "APPLE FRESH", "descripcion": "Jugo de limón, syrup de piña, pisco apple y Red Bull sabor sandía.", "precio": 8950 },
+        { "nombre": "JARDIN DE ROSAS", "descripcion": "Jugo de limón, gin pink, chambord, pulpa de frutilla y agua tónica.", "precio": 7950 },
+        { "nombre": "WOMAN FIZZ", "descripcion": "Jugo de limón, syrup simple, gin, ramazzotti, malibú y mix de cítricos y maracuya.", "precio": 8750 },
+        { "nombre": "ESPRESO 43", "descripcion": "Amaretto, vodka, shot de espresso, crema de leche y licor 43.", "precio": 8950 },
+        { "nombre": "MIEL ANTARTICO FROZEN", "descripcion": "Jack honey, crema de coco, syrup simple y jugo de piña.", "precio": 7950 },
+        { "nombre": "DIABLO ETERNO", "descripcion": "Licor 43, tequila añejado y licor de café.", "precio": 7950 },
+        { "nombre": "SUMMER SPRITS", "descripcion": "Vodka de mango, st germain y mix de cítricos.", "precio": 7950 },
+        { "nombre": "VIRGIN COLADA", "descripcion": "Crema de coco y jugo de piña. (Sin alcohol)", "precio": 6750 },
+        { "nombre": "MOJITO SIN ALCOHOL", "descripcion": "Hierbabuena, limón, syrup simple y agua con gas.", "precio": 5950 }
+      ]
+    },
+    {
+      "categoria": "Coctelería Clásica",
+      "items": [
+        { "nombre": "TOM COLLINS", "descripcion": "Ginebra con jugo de limón, jarabe simple y un toque de soda.", "precio": 7200 },
+        { "nombre": "BRAMBLE", "descripcion": "Ginebra con jugo de limón, puré de moras y licor chambord.", "precio": 7200 },
+        { "nombre": "MARTINI DRY", "descripcion": "Ginebra con vermut extra dry y una aceituna sevillana.", "precio": 6100 },
+        { "nombre": "NEGRONI", "descripcion": "Ginebra con vermut y campari.", "precio": 7950 },
+        { "nombre": "CLOVER CLUB", "descripcion": "Ginebra con jugo de limón, jarabe simple, pulpa de frambuesa y albumina.", "precio": 6900 },
+        { "nombre": "LONDON MULE", "descripcion": "Ginebra, jugo de limón y ginger beer.", "precio": 7900 },
+        { "nombre": "PISCO SOUR", "descripcion": "Pisco transparente con jugo de limón, jarabe simple y albumina.", "precio": 6200 },
+        { "nombre": "PICHUNCHO", "descripcion": "Vermut rosso combinado con pisco añejado en barricas tostadas.", "precio": 5750 },
+        { "nombre": "APPLE SOUR", "descripcion": "Pisco transparente con jugo de limón, jarabe simple, manzana verde y albumina.", "precio": 6550 },
+        { "nombre": "MOJITO ELQUINO", "descripcion": "Pisco transparente con jugo de limón, arrope de papaya, menta fresca y maracuyá.", "precio": 6450 }
+      ]
+    },
+    {
+      "categoria": "Destilados Populares",
+      "items": [
+        { "nombre": "BALLANTINE'S SCOTCH 40°", "descripcion": "Corto + Bebida 220ml", "precio": 6450 },
+        { "nombre": "CHIVAS 12 AÑOS", "descripcion": "Corto + Bebida 220ml", "precio": 8450 },
+        { "nombre": "JACK DANIEL'S N° 7", "descripcion": "Corto + Bebida 220ml", "precio": 7750 },
+        { "nombre": "BEEFEATER", "descripcion": "Corto + Bebida 220ml", "precio": 6950 },
+        { "nombre": "BOMBAY", "descripcion": "Corto + Bebida 220ml", "precio": 7450 },
+        { "nombre": "ZACAPA 12 AÑOS", "descripcion": "Corto + Bebida 220ml", "precio": 9450 },
+        { "nombre": "HAVANA 7 AÑOS", "descripcion": "Corto + Bebida 220ml", "precio": 7950 },
+        { "nombre": "ABSOLUT BLUE", "descripcion": "Corto + Bebida 220ml", "precio": 6450 },
+        { "nombre": "MISTRAL 35°", "descripcion": "Corto + Bebida 220ml", "precio": 5750 },
+        { "nombre": "ALTO DEL CARMEN 40°", "descripcion": "Corto + Bebida 220ml", "precio": 6450 }
+      ]
+    }
+  ]
+}
