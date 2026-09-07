@@ -6,6 +6,14 @@ import menuComidaData from '../data/menu_comida.json';
 
 const barCategories = menuBarData.menu_bar;
 const foodCategories = menuComidaData.menu_comida;
+
+// Mapeo de imágenes para carga bajo demanda en clic
+const dishImages: Record<string, string> = {
+  "AMERICAN BURGER+": "/images/hamburguesa.webp",
+  "LOMO A LO POBRE": "/images/lomopobre.webp",
+  "HAWAI": "/images/hawaii.webp",
+  "PLAYA BRAVA": "/images/playabrava.webp",
+};
 ---
 <Layout>
   <!-- Script síncrono que corre antes de pintar el DOM para cargar inmediatamente la pestaña seleccionada sin parpadeos -->
@@ -95,7 +103,12 @@ const foodCategories = menuComidaData.menu_comida;
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {cat.items.map((item) => (
-              <Card nombre={item.nombre} descripcion={item.descripcion} precio={item.precio} />
+              <Card 
+                nombre={item.nombre} 
+                descripcion={item.descripcion} 
+                precio={item.precio} 
+                imagen={dishImages[item.nombre]}
+              />
             ))}
           </div>
         </section>
@@ -120,7 +133,12 @@ const foodCategories = menuComidaData.menu_comida;
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {cat.items.map((item) => (
-              <Card nombre={item.nombre} descripcion={item.descripcion} precio={item.precio} />
+              <Card 
+                nombre={item.nombre} 
+                descripcion={item.descripcion} 
+                precio={item.precio} 
+                imagen={dishImages[item.nombre]}
+              />
             ))}
           </div>
         </section>

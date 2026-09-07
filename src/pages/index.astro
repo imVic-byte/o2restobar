@@ -11,6 +11,14 @@ const foodCategories = menuComidaData.menu_comida;
 const featuredNames = ["AMERICAN BURGER+", "LOMO A LO POBRE", "HAWAI", "PLAYA BRAVA"];
 const allItems = [...barCategories, ...foodCategories].flatMap(cat => cat.items);
 const featuredItems = featuredNames.map(name => allItems.find(item => item.nombre === name));
+
+// Mapeo de imágenes para carga bajo demanda en clic
+const dishImages: Record<string, string> = {
+  "AMERICAN BURGER+": "/images/hamburguesa.webp",
+  "LOMO A LO POBRE": "/images/lomopobre.webp",
+  "HAWAI": "/images/hawaii.webp",
+  "PLAYA BRAVA": "/images/playabrava.webp",
+};
 ---
 <Layout>
   <header class="w-full flex justify-center pt-8 pb-4 relative z-10 px-4">
@@ -86,7 +94,14 @@ const featuredItems = featuredNames.map(name => allItems.find(item => item.nombr
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {featuredItems.map((item) => (
-          item ? <Card nombre={item.nombre} descripcion={item.descripcion} precio={item.precio} /> : null
+          item ? (
+            <Card 
+              nombre={item.nombre} 
+              descripcion={item.descripcion} 
+              precio={item.precio} 
+              imagen={dishImages[item.nombre]}
+            />
+          ) : null
         ))}
       </div>
     </section>
