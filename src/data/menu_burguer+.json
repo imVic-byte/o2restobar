@@ -1,0 +1,276 @@
+{
+  "establecimiento": "Burger+",
+  "menu": {
+    "Classic Burger+": [
+      {
+        "nombre": "American Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, burger artesanal 200 gr., queso cheddar, tocino y salsa BBQ.",
+        "precio": 11750
+      },
+      {
+        "nombre": "Oxygen Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, burger artesanal 200 gr., doble queso mozzarella, huevo frito, papas hilo y salsa de cilantro.",
+        "precio": 11750
+      },
+      {
+        "nombre": "Veggie Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, veggie burger de la casa, palta, vegetales salteados, cebolla caramelizada y salsa de queso azul.",
+        "precio": 11950
+      },
+      {
+        "nombre": "Mozzarella Crisp Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, Burger artesanal 200g., queso mozzarella apanado 3 cm y salsa BBQ.",
+        "precio": 11950
+      },
+      {
+        "nombre": "Classic Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, burger artesanal 200 gr., queso mozzarella, aros de cebolla y salsa cheddar.",
+        "precio": 11750
+      },
+      {
+        "nombre": "Spicy Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, pollo apanado, champiñón salteado, cebolla caramelizada, jalapeño y salsa chipotle.",
+        "precio": 11750
+      }
+    ],
+    "Deluxe Burger+": [
+      {
+        "nombre": "Doble Maxi Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, doble burger 120 gr. c/u, doble queso cheddar y doble tocino y salsa BBQ.",
+        "precio": 12950
+      },
+      {
+        "nombre": "Triple Maxi Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, triple burger 120 gr., triple queso cheddar, triple tocino, cebolla caramelizada, salsa BBQ, bañada en salsa de queso cheddar y cebolla crispy.",
+        "precio": 14950
+      },
+      {
+        "nombre": "Kraken Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, reineta frita, zanahoria hilo, cebolla pluma, cilantro, camarones salteados y salsa acevichada.",
+        "precio": 14950
+      },
+      {
+        "nombre": "Paradise Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, doble veggie burger, doble mozzarella veggie, berenjena asada, pimentones salteados, aros de cebolla, salsa de yogurt ajo y ciboulette.",
+        "precio": 14450
+      },
+      {
+        "nombre": "Lujo De Dubai Burger+",
+        "ingredientes": "Mayo, lechuga, tomate, doble burger 120 gr. c/u, doble tocino doble queso mozzarella, aros de cebolla, salsa BBQ, bañado en salsa cheddar y pequeñas láminas de oro comestible.",
+        "precio": 14250
+      }
+    ],
+    "Hot Dog Burger+": [
+      {
+        "nombre": "Caribbean Hot dog+",
+        "ingredientes": "Salchicha extra grande, repollo, zanahoria, cebolla, papa hilo, ketchup, mayo y mostaza. (2 Unidades)",
+        "precio": 9450
+      },
+      {
+        "nombre": "American Hot dog+",
+        "ingredientes": "Salchicha extra grande, papa hilo, tocino y salsa bbq. (2 Unidades)",
+        "precio": 9450
+      },
+      {
+        "nombre": "Oxygen Hot dog+",
+        "ingredientes": "Pechuga de pollo trozado o salchicha extra grande, palta, choclo, papas hilo con salsa cheddar. (2 Unidades)",
+        "precio": 10250
+      },
+      {
+        "nombre": "Veggie Hot dog+",
+        "ingredientes": "Falafel de garbanzo, tomate, cebolla, cilantro, palta, aceitunas, salsa de yogurt: ajo ciboullette. (2 Unidades)",
+        "precio": 9950
+      },
+      {
+        "nombre": "Italian Hot dog+",
+        "ingredientes": "Salchicha extra grande, tomate, palta y mayonesa casera. (2 Unidades)",
+        "precio": 9450
+      }
+    ],
+    "Menu Burger Kids": [
+      {
+        "nombre": "Kids Carne Queso",
+        "ingredientes": "Mayo, lechuga, tomate, burger artesanal 120g, queso cheddar o mozzarella. Con papas y bebida recargable.",
+        "precio": 8950
+      },
+      {
+        "nombre": "Kids Chicken Avocado",
+        "ingredientes": "Mayo, lechuga, tomate, palta, pollo de 120g. Con papas y bebida recargable.",
+        "precio": 8950
+      },
+      {
+        "nombre": "Kids Al Plato",
+        "ingredientes": "Reineta o pollo a la plancha acompañado de arroz y mix de vegetales.",
+        "precio": 8950
+      }
+    ],
+    "Cervezas y Aperitivos Extras": [
+      {
+        "nombre": "Pisco Sour O2",
+        "precio": 6450
+      },
+      {
+        "nombre": "Ramazzotti Spritz",
+        "precio": 6450
+      },
+      {
+        "nombre": "Schop 500 ml Guayacán Variedades",
+        "precio": 5950
+      },
+      {
+        "nombre": "Schop 500 ml Kunstmann",
+        "precio": 6450
+      },
+      {
+        "nombre": "Schop 500 ml Heineken",
+        "precio": 5950
+      },
+      {
+        "nombre": "Botellín Sol",
+        "precio": 4950
+      },
+      {
+        "nombre": "Botellín Corona",
+        "precio": 5750
+      },
+      {
+        "nombre": "Botellín Guayacán Variedades",
+        "precio": 5750
+      },
+      {
+        "nombre": "Botellín Kunstmann",
+        "precio": 5950
+      },
+      {
+        "nombre": "Agregado Michelada",
+        "precio": 1500
+      },
+      {
+        "nombre": "Rocket Kunstmann 3L",
+        "precio": 29990
+      },
+      {
+        "nombre": "Rocket Guayacán 3L",
+        "precio": 29990
+      }
+    ],
+    "Cafeteria Marley Coffee": {
+      "Cafeteria": [
+        {
+          "nombre": "Café Grano Latte / Vainilla / Macchiato / Moka / Capuccino / Capuccino Canela / Americano",
+          "precio_mediano": 2450,
+          "precio_grande": 2950
+        },
+        {
+          "nombre": "Chocolate Con Leche / Fuerte",
+          "precio_mediano": 2450,
+          "precio_grande": 2950
+        },
+        {
+          "nombre": "Té Chai Latte",
+          "precio_mediano": 2450,
+          "precio_grande": 2950
+        },
+        {
+          "nombre": "Espresso Simple",
+          "precio": 1500
+        },
+        {
+          "nombre": "Espresso Doble",
+          "precio": 1800
+        }
+      ],
+      "Desayunos": [
+        {
+          "nombre": "Paila De Huevo 3 Unidades",
+          "precio": 3750
+        },
+        {
+          "nombre": "Tostadas Con Palta",
+          "precio": 3950
+        }
+      ],
+      "Sandwich Pan Miga": [
+        {
+          "nombre": "Ave Pimentón o Ave Mayo",
+          "precio": 3350
+        },
+        {
+          "nombre": "Barros Jarpa",
+          "precio": 3850
+        },
+        {
+          "nombre": "Mechada Luco",
+          "precio": 4500
+        },
+        {
+          "nombre": "Agrega Ración De Papas",
+          "precio": 1500
+        }
+      ],
+      "Sandwich Pan Rustico": [
+        {
+          "nombre": "Queso De Cabra, Tomate, Lechuga Y Aceituna",
+          "precio": 4450
+        },
+        {
+          "nombre": "Jamón, Queso, Tomate Y Lechuga",
+          "precio": 4250
+        },
+        {
+          "nombre": "Lechuga, Palta, Palmitos Y Tomate",
+          "precio": 4450
+        }
+      ],
+      "Pasteles y Tartas": [
+        {
+          "nombre": "Muffin",
+          "precio": 2000
+        },
+        {
+          "nombre": "Dona Rellena",
+          "precio": 2000
+        },
+        {
+          "nombre": "Kuchen De Frambuesa Miga",
+          "precio": 4200
+        },
+        {
+          "nombre": "Kuchen De Nuez",
+          "precio": 2200
+        },
+        {
+          "nombre": "Torta De Panqueque Chocolate",
+          "precio": 4750
+        },
+        {
+          "nombre": "Cheesecake Oreo",
+          "precio": 4750
+        },
+        {
+          "nombre": "Pie De Limón",
+          "precio": 4750
+        },
+        {
+          "nombre": "Medias Lunas (3 Unidades)",
+          "precio": 2500
+        }
+      ]
+    },
+    "Adicionales": [
+      {
+        "nombre": "Toppings Salsa Extra",
+        "ingredientes": "Salsa bbq, salsa blanca, salsa cheddar, yogurt ajo ciboulette, salsa de tocino, mayonesa casera, chipotle, salsa de perejil / cilantro, mostaza dulce y salsa cevichada.",
+        "precio": 1500
+      },
+      {
+        "nombre": "Refill Cerveza (90 min)",
+        "precio": 1900
+      },
+      {
+        "nombre": "Envase para llevar",
+        "precio": 500
+      }
+    ]
+  }
+}

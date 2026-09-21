@@ -1,0 +1,212 @@
+{
+  "establecimiento": "Rooftop",
+  "menu": {
+    "Platos Estrella": [
+      {
+        "nombre": "Salmón En Salsa Margarita",
+        "ingredientes": "Acompañado de: Papas, Arroz o mix de ensaladas.",
+        "precio": 15950
+      },
+      {
+        "nombre": "Suprema De Pollo (180 gr)",
+        "ingredientes": "Acompañado de: Risotto al pesto o ensalada.",
+        "precio": 13750
+      },
+      {
+        "nombre": "Pasta Con Salsa",
+        "ingredientes": "Salsa Alfredo o salsa de champiñones.",
+        "precio": 12950
+      },
+      {
+        "nombre": "Lasaña Boloñesa",
+        "precio": 11250
+      },
+      {
+        "nombre": "Arroz Con Mariscos",
+        "ingredientes": "Pulpo, camarón y mixtura de mariscos.",
+        "precio": 10750
+      },
+      {
+        "nombre": "Lomo A Lo Pobre",
+        "ingredientes": "250 gr. de lomo vetado (o pollo) acompañado de cebolla caramelizada, 2 huevos fritos y papas fritas y mayonesa casera.",
+        "precio": 14500
+      },
+      {
+        "nombre": "Pulpo A La Parrilla",
+        "ingredientes": "Tentáculos de pulpo (250 gr) adobado en chimichurri de la casa en cama de cebolla y tomate, acompañado por papas rústicas al romero.",
+        "precio": 14450
+      },
+      {
+        "nombre": "Lomo Saltado",
+        "ingredientes": "Lomo de vacuno (o pollo) al wok con cebolla morada, tomate y cebollín, acompañado de arroz blanco o espagueti y papas fritas.",
+        "precio": 12950
+      },
+      {
+        "nombre": "Pescado Con Agregado",
+        "ingredientes": "Pescado del día frito o a la plancha (o pollo), acompañado de papas fritas o arroz y 3 vegetales a elección.",
+        "precio": 11950
+      }
+    ],
+    "Ensaladas": [
+      {
+        "nombre": "Veggie Salad",
+        "ingredientes": "Falafel de garbanzos, lechuga, tomate, choclo, cebolla morada, palta, aceitunas negras en rodajas.",
+        "precio": 8750
+      },
+      {
+        "nombre": "Un Verano Naranja",
+        "ingredientes": "Lechuga, tomate, zanahoria, salmón, camarones, choclo, cubos de queso al pesto, salsa de chipotle y tostadas a las finas hierbas.",
+        "precio": 12450
+      },
+      {
+        "nombre": "Cesar Salad",
+        "ingredientes": "Lechuga, zanahoria, queso parmesano tomate cherry, alcaparras, queso parmesano, pollo grillado o camarón, tostadas y salsa cesar de la casa.",
+        "precio": 9750
+      }
+    ],
+    "Tablas (3 a 4 personas)": [
+      {
+        "nombre": "Quebrada Seca",
+        "ingredientes": "4 uni de dedos de queso mozzarella apanado, 5 uni de empanadas de queso, mix de frutos secos, mix de aceitunas, mix de quesos especiados, galletas para untar, guacamole y salsa de ajo.",
+        "precio": 26500
+      },
+      {
+        "nombre": "Toto Golden Beach",
+        "ingredientes": "Cama de 1 kg de papas rústicas cubierta de Ostiones, pulpo y Camarones en salsa blanca con topping de salsa cheddar, 6 aros de cebolla, ciboullette y 3 camarones apanados.",
+        "precio": 28950
+      },
+      {
+        "nombre": "Playa Brava",
+        "ingredientes": "Lomo de vacuno 200g, pollo o camarones al pilpil 150g sobre una cama de 1kg de papas fritas, acompañado de cebolla caramelizada, 3 huevos fritos, cubos de queso mozzarella y aceitunas negras en rodajas, salsa de chipotle y 6 mini tostadas.",
+        "precio": 29950
+      },
+      {
+        "nombre": "Jardin De Valle Y Mar",
+        "ingredientes": "Tabla con ceviche mixto, 4 Ostiones parmesanos, pulpo al olivo, 4 brochetas de camarones, 5 filetillos de reineta frita, 4 aros de cebolla frita, 4 camarones apanados, 5 empanaditas de camarón queso, salsa verde.",
+        "precio": 37750
+      },
+      {
+        "nombre": "La Playera",
+        "ingredientes": "Canasta de apanados: 6 camarones apanados, 6 Falafel, 5 empanadas queso tomate albahaca, 4 alitas de pollo apanadas, 6 deditos de queso y papas fritas, acompañado de 2 salsas a elección.",
+        "precio": 27500
+      },
+      {
+        "nombre": "Las Cuatro Esquinas",
+        "ingredientes": "4 mini sándwich inspirados en lo mejor de nuestro país. Churrasco marino, mechada luco, churrasco champiñón queso, pollo italiano, acompañado de papas fritas y 2 salsas a elección.",
+        "precio": 22950
+      }
+    ],
+    "Ceviches": [
+      {
+        "nombre": "Ceviche Peruano",
+        "ingredientes": "Cama de lechuga, reineta fresca en cubos, cebolla, pimentón, cilantro, leche de tigre, tostadas a las finas hierbas.",
+        "precio": 13450
+      },
+      {
+        "nombre": "Ceviche Mixto",
+        "ingredientes": "Cama de lechuga, reineta fresca en cubos, salmón en cubos, camarón, cebolla pluma, cilantro, leche de tigre, tostadas a las finas hierbas.",
+        "precio": 13950
+      }
+    ],
+    "Piqueos": [
+      {
+        "nombre": "Empanadas Queso Camarón (5 un)",
+        "precio": 7950
+      },
+      {
+        "nombre": "Empanadas Queso Mantecoso (5 un)",
+        "precio": 6950
+      },
+      {
+        "nombre": "Empanadas Queso Tomate Albahaca (5 un)",
+        "precio": 7250
+      },
+      {
+        "nombre": "Alitas Empanizadas (6 un)",
+        "precio": 7450
+      },
+      {
+        "nombre": "Filetes Empanizados (6 un)",
+        "precio": 8250
+      },
+      {
+        "nombre": "Papitas Onion Cheddar (450 gr)",
+        "precio": 8950
+      },
+      {
+        "nombre": "Papitas Veggie (450 gr)",
+        "precio": 8250
+      },
+      {
+        "nombre": "Papitas Mechada (450 gr)",
+        "precio": 8950
+      },
+      {
+        "nombre": "Falafel (8 un)",
+        "ingredientes": "Garbanzo, ajo, cilantro, salsa de yogurt ajo ciboullette.",
+        "precio": 7950
+      }
+    ],
+    "Sandwich Pan Rustico": [
+      {
+        "nombre": "Mechada Aesthetic",
+        "ingredientes": "Mayo, lechuga, tomate, carne mechada, queso mozzarella, palta, choclo, cebolla caramelizada, papas hilo, mayonesa casera.",
+        "precio": 14250
+      },
+      {
+        "nombre": "Mexican Style",
+        "ingredientes": "Mayo, lechuga, tomate, milanesa de pollo, queso mozzarella, guacamole, ají jalapeño, cebolla crispy, cubierto con salsa de cilantro.",
+        "precio": 13450
+      },
+      {
+        "nombre": "Vista Peñuelas",
+        "ingredientes": "Mayo, rúcula, tomate, reineta frita, cebolla, cilantro, salsa acevichada, papas hilo, queso de cabra rallado.",
+        "precio": 14750
+      },
+      {
+        "nombre": "Máximo Playero",
+        "ingredientes": "Mayo, lechuga, tomate asado, pollo a la plancha, jamón serrano, triple queso mozzarella, cebolla caramelizada, aceitunas, aros de cebolla, mayonesa casera.",
+        "precio": 15450
+      }
+    ],
+    "Pizzas Masa Rustica": [
+      {
+        "nombre": "Pizza Pepperoni",
+        "ingredientes": "Queso y Pepperoni.",
+        "precio": 15750
+      },
+      {
+        "nombre": "Pizza Napolitana",
+        "ingredientes": "Tomate, Jamón, Aceitunas.",
+        "precio": 15750
+      },
+      {
+        "nombre": "Pizza Mar Y Tierra",
+        "ingredientes": "Pollo, Camarón y Champiñón.",
+        "precio": 16950
+      },
+      {
+        "nombre": "Pizza Veggie",
+        "ingredientes": "Champiñón, Choclo y Pimentón.",
+        "precio": 15750
+      },
+      {
+        "nombre": "Pizza Campestre",
+        "ingredientes": "Pollo, Carne, Cebollín, Cebolla y Champiñón.",
+        "precio": 15750
+      }
+    ],
+    "Agregados Pizza": [
+      {
+        "nombre": "Vegetales",
+        "opciones": "Palmitos, Pimentón, Aceitunas, Cebolla, Cebollín, Jalapeño, Choclo",
+        "precio": 1750
+      },
+      {
+        "nombre": "Proteínas 150 gr",
+        "opciones": "Carne Mechada, Camarón, Pollo, Champiñón, Salmón, Tocino",
+        "precio": 2450
+      }
+    ]
+  }
+}

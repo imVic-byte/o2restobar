@@ -1,132 +1,244 @@
 ---
 interface Props {
   nombre: string;
-  descripcion: string;
-  precio: number;
+  descripcion?: string;
+  precio?: number;
+  precio_mediano?: number;
+  precio_grande?: number;
+  precio_sin_pulpa?: number;
+  opciones?: string;
   imagen?: string;
+  isTabla?: boolean;
 }
 
-const { nombre, descripcion, precio, imagen } = Astro.props;
-const formattedPrice = new Intl.NumberFormat('es-CL', {
-  style: 'currency',
-  currency: 'CLP',
-  maximumFractionDigits: 0
-}).format(precio);
+const {
+  nombre,
+  descripcion = "",
+  precio,
+  precio_mediano,
+  precio_grande,
+  precio_sin_pulpa,
+  opciones,
+  imagen,
+  isTabla = false
+} = Astro.props;
+
+const formatClp = (amount?: number) => {
+  if (amount === undefined || amount === null) return "";
+  return new Intl.NumberFormat("es-CL", {
+    style: "currency",
+    currency: "CLP",
+    maximumFractionDigits: 0,
+  }).format(amount);
+};
+
+// Extraer notas entre paréntesis para mostrarlas como badges elegantes (ej: 3 a 4 personas, 180 gr, 2 Unidades)
+const badgeMatch = nombre.match(/\((.*?)\)/);
+const badgeText = badgeMatch ? badgeMatch[1] : null;
+const cleanName = badgeMatch ? nombre.replace(/\(.*?\)/, "").trim() : nombre;
 ---
-<div 
-  class={`ds-card menu-item h-full group ${imagen ? 'card-with-image cursor-pointer hover:border-accent/80 transition-all' : ''}`} 
-  data-nombre={nombre.toLowerCase()} 
-  data-descripcion={descripcion.toLowerCase()}
+
+<div
+  class={`menu-item h-full group flex flex-col justify-between transition-all duration-300 ${
+    isTabla
+      ? "md:col-span-2 relative p-6 bg-gradient-to-br from-zinc-950/90 via-zinc-900/60 to-zinc-950/90 border-2 border-accent/60 rounded-xs shadow-md shadow-black/60 hover:border-accent"
+      : "ds-card"
+  } ${imagen ? "card-with-image cursor-pointer hover:border-accent/80" : ""}`}
+  data-nombre={`${cleanName} ${nombre}`.toLowerCase()}
+  data-descripcion={`${descripcion} ${opciones || ""}`.toLowerCase()}
   data-has-image={imagen ? "true" : "false"}
 >
-  <!-- Acentos angulares de esquina dorados (estilo congruente con la carta) -->
-  <div class="absolute -top-[1px] -left-[1px] w-2.5 h-2.5 border-t-2 border-l-2 border-accent/70 group-hover:border-accent group-hover:shadow-[0_0_6px_rgba(250,204,21,0.6)] transition-all"></div>
-  <div class="absolute -top-[1px] -right-[1px] w-2.5 h-2.5 border-t-2 border-r-2 border-accent/70 group-hover:border-accent group-hover:shadow-[0_0_6px_rgba(250,204,21,0.6)] transition-all"></div>
-  <div class="absolute -bottom-[1px] -left-[1px] w-2.5 h-2.5 border-b-2 border-l-2 border-accent/70 group-hover:border-accent group-hover:shadow-[0_0_6px_rgba(250,204,21,0.6)] transition-all"></div>
-  <div class="absolute -bottom-[1px] -right-[1px] w-2.5 h-2.5 border-b-2 border-r-2 border-accent/70 group-hover:border-accent group-hover:shadow-[0_0_6px_rgba(250,204,21,0.6)] transition-all"></div>
+  <div>
+    {/* Tag superior exclusivo para las Tablas del PDF */}
+    {isTabla && (
+      <div class="flex items-center justify-between gap-2 pb-2 mb-3 border-b border-dashed border-accent/40">
+        <span class="text-[10px] font-headings font-extrabold uppercase tracking-widest text-accent flex items-center gap-1.5">
+          <span>✦</span> TABLA GOURMET · PARA COMPARTIR <span>✦</span>
+        </span>
+        <span class="px-2.5 py-0.5 text-[10px] font-headings font-bold uppercase tracking-wider bg-accent text-zinc-950 rounded-none shadow-sm">
+          👥 {badgeText || "3 a 4 Personas"}
+        </span>
+      </div>
+    )}
 
-  <div class="flex items-start justify-between gap-3">
-    <h3 class="font-body font-bold text-base md:text-lg text-text-primary group-hover:text-accent tracking-wide transition-colors">
-      {nombre}
-    </h3>
-    <span class="ds-price-badge font-body text-white shrink-0">{formattedPrice}</span>
+    <!-- Encabezado de la card: Nombre y Precios -->
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex flex-col gap-1 flex-1">
+        <div class="flex items-center gap-2 flex-wrap">
+          <h3
+            class={`font-headings font-bold tracking-wide transition-colors ${
+              isTabla
+                ? "text-lg md:text-xl text-accent group-hover:text-yellow-300"
+                : "text-sm md:text-base text-text-primary group-hover:text-accent"
+            }`}
+          >
+            {cleanName}
+          </h3>
+
+          {!isTabla && badgeText && (
+            <span class="inline-flex items-center px-2 py-0.5 text-[10px] font-headings font-semibold uppercase tracking-wider bg-accent/10 text-accent border border-accent/30 rounded-none">
+              {badgeText}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <!-- Precios -->
+      <div class="shrink-0 flex flex-col items-end gap-1">
+        {precio !== undefined && precio > 0 && (
+          <span class="ds-price-badge font-headings font-bold text-white shrink-0">
+            {formatClp(precio)}
+          </span>
+        )}
+
+        {precio_sin_pulpa !== undefined && (
+          <span class="text-[10px] text-text-secondary font-body">
+            s/ pulpa: <strong class="text-accent">{formatClp(precio_sin_pulpa)}</strong>
+          </span>
+        )}
+
+        {precio_mediano !== undefined && precio_grande !== undefined && (
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-2 py-1 bg-accent/15 border border-accent/40 text-accent text-xs font-headings font-bold">
+              Mediano {formatClp(precio_mediano)}
+            </span>
+            <span class="inline-flex items-center px-2 py-1 bg-accent/25 border border-accent text-accent text-xs font-headings font-bold">
+              Grande {formatClp(precio_grande)}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Separador punteado característico del diseño del PDF -->
+    <div class="w-full border-b border-dashed border-accent/25 my-2.5"></div>
+
+    <!-- Descripción / Ingredientes -->
+    {descripcion && (
+      <p class={`text-text-secondary font-body leading-relaxed mt-1 ${isTabla ? "text-xs md:text-sm text-zinc-300" : "text-xs"}`}>
+        {descripcion}
+      </p>
+    )}
+
+    <!-- Opciones adicionales (ej. Agregados Pizza) -->
+    {opciones && (
+      <div class="mt-2 pt-2 border-t border-zinc-800 text-[11px] text-accent/90 font-body">
+        <span class="font-bold text-text-primary uppercase tracking-wider font-headings">Opciones:</span> {opciones}
+      </div>
+    )}
   </div>
 
-  {descripcion && (
-    <p class="text-text-secondary text-xs md:text-sm font-body leading-relaxed flex-1 mt-1">
-      {descripcion}
-    </p>
-  )}
-
+  <!-- Desplegable de Fotografía cuando esté disponible -->
   {imagen && (
-    <div>
-      {/* Indicador de foto disponible */}
-      <div class="flex items-center justify-between mt-3 pt-2 border-t border-accent/20">
+    <div class="mt-3">
+      <div class="flex items-center justify-between pt-2 border-t border-accent/20">
         <span class="inline-flex items-center gap-1.5 text-accent font-medium tracking-wider uppercase text-[11px] group-hover:text-accent-hover transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-            <circle cx="12" cy="13" r="3"/>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+            <circle cx="12" cy="13" r="3" />
           </svg>
           <span class="toggle-text">Ver foto</span>
         </span>
-        <span class="toggle-arrow text-accent/70 text-[10px] transition-transform duration-300">▼</span>
+        <span class="toggle-arrow text-accent/70 text-[10px] transition-transform duration-300">
+          ▼
+        </span>
       </div>
 
-      {/* Contenedor de la imagen (0 bytes cargados inicialmente hasta hacer clic) */}
+      <!-- Contenedor de la imagen (bajo demanda) -->
       <div class="image-container overflow-hidden max-h-0 opacity-0 transition-all duration-500 ease-out">
-        <div class="relative mt-3 rounded-lg overflow-hidden border border-accent/40 bg-zinc-950/90 aspect-video flex items-center justify-center shadow-inner">
-          {/* Skeleton de carga animado con destello dorado */}
+        <div class="relative mt-3 rounded-none overflow-hidden border border-accent/50 bg-zinc-950/90 aspect-video flex items-center justify-center shadow-inner">
           <div class="skeleton-loader absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 animate-pulse flex items-center justify-center">
-            <svg class="animate-spin h-5 w-5 text-accent/60" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <svg
+              class="animate-spin h-5 w-5 text-accent/60"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              />
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
             </svg>
           </div>
-          {/* Imagen que solo recibe su src cuando el usuario hace clic */}
-          <img 
-            data-src={imagen} 
-            alt={`Foto de ${nombre}`} 
+          <img
+            data-src={imagen}
+            alt={`Foto de ${cleanName}`}
             class="dish-img w-full h-full object-cover opacity-0 transition-opacity duration-300 relative z-10 hover:scale-105 transition-transform"
           />
         </div>
-        <p class="text-[10px] text-accent/60 text-center mt-1 italic tracking-wide">Toca la foto para ampliar</p>
+        <p class="text-[10px] text-accent/60 text-center mt-1 italic tracking-wide">
+          Toca la foto para ampliar
+        </p>
       </div>
     </div>
   )}
 </div>
 
 <script>
-  // Manejo de carga bajo demanda y expansión al hacer clic en la tarjeta
-  document.querySelectorAll('.card-with-image').forEach((card) => {
-    // Evitar agregar múltiples listeners si el script se evalúa nuevamente
-    if (card.getAttribute('data-has-listener') === 'true') return;
-    card.setAttribute('data-has-listener', 'true');
+  document.querySelectorAll(".card-with-image").forEach((card) => {
+    if (card.getAttribute("data-has-listener") === "true") return;
+    card.setAttribute("data-has-listener", "true");
 
-    const container = card.querySelector('.image-container') as HTMLElement | null;
-    const img = card.querySelector('.dish-img') as HTMLImageElement | null;
-    const loader = card.querySelector('.skeleton-loader') as HTMLElement | null;
-    const toggleText = card.querySelector('.toggle-text');
-    const toggleArrow = card.querySelector('.toggle-arrow');
+    const container = card.querySelector(".image-container") as HTMLElement | null;
+    const img = card.querySelector(".dish-img") as HTMLImageElement | null;
+    const loader = card.querySelector(".skeleton-loader") as HTMLElement | null;
+    const toggleText = card.querySelector(".toggle-text");
+    const toggleArrow = card.querySelector(".toggle-arrow");
 
     if (!container || !img) return;
 
-    card.addEventListener('click', (e) => {
+    card.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
-      
-      // Si hizo clic en la imagen ya cargada, abrir lightbox en pantalla completa
-      if (target.classList.contains('dish-img') && img.src) {
+
+      if (target.classList.contains("dish-img") && img.src) {
         e.stopPropagation();
-        if (typeof (window as any).openDishLightbox === 'function') {
-          const title = card.querySelector('h3')?.textContent || '';
-          const price = card.querySelector('.ds-price-badge')?.textContent || '';
+        if (typeof (window as any).openDishLightbox === "function") {
+          const title = card.querySelector("h3")?.textContent || "";
+          const price = card.querySelector(".ds-price-badge")?.textContent || "";
           (window as any).openDishLightbox(img.src, title, price);
         }
         return;
       }
 
-      const isExpanded = container.classList.contains('is-expanded');
+      const isExpanded = container.classList.contains("is-expanded");
 
       if (isExpanded) {
-        // Colapsar
-        container.classList.remove('is-expanded');
-        container.style.maxHeight = '0px';
-        container.style.opacity = '0';
-        if (toggleText) toggleText.textContent = 'Ver foto';
-        if (toggleArrow) toggleArrow.classList.remove('rotate-180');
+        container.classList.remove("is-expanded");
+        container.style.maxHeight = "0px";
+        container.style.opacity = "0";
+        if (toggleText) toggleText.textContent = "Ver foto";
+        if (toggleArrow) toggleArrow.classList.remove("rotate-180");
       } else {
-        // Expandir
-        container.classList.add('is-expanded');
-        container.style.maxHeight = '360px';
-        container.style.opacity = '1';
-        if (toggleText) toggleText.textContent = 'Ocultar foto';
-        if (toggleArrow) toggleArrow.classList.add('rotate-180');
+        container.classList.add("is-expanded");
+        container.style.maxHeight = "360px";
+        container.style.opacity = "1";
+        if (toggleText) toggleText.textContent = "Ocultar foto";
+        if (toggleArrow) toggleArrow.classList.add("rotate-180");
 
-        // Descargar la imagen SOLAMENTE la primera vez que se hace clic
         if (!img.src && img.dataset.src) {
           img.onload = () => {
-            img.classList.remove('opacity-0');
-            img.classList.add('opacity-100');
-            if (loader) loader.classList.add('hidden');
+            img.classList.remove("opacity-0");
+            img.classList.add("opacity-100");
+            if (loader) loader.classList.add("hidden");
           };
           img.src = img.dataset.src;
         }

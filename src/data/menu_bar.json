@@ -1,49 +1,636 @@
-﻿{
-  "menu_bar": [
-    {
-      "categoria": "Especialidades y Mocktails",
-      "items": [
-        { "nombre": "HAWAI", "descripcion": "Crema de coco, licor malibú, gin, ron blanco.", "precio": 8000 },
-        { "nombre": "APPLE FRESH", "descripcion": "Jugo de limón, syrup de piña, pisco apple y Red Bull sabor sandía.", "precio": 8950 },
-        { "nombre": "JARDIN DE ROSAS", "descripcion": "Jugo de limón, gin pink, chambord, pulpa de frutilla y agua tónica.", "precio": 7950 },
-        { "nombre": "WOMAN FIZZ", "descripcion": "Jugo de limón, syrup simple, gin, ramazzotti, malibú y mix de cítricos y maracuya.", "precio": 8750 },
-        { "nombre": "ESPRESO 43", "descripcion": "Amaretto, vodka, shot de espresso, crema de leche y licor 43.", "precio": 8950 },
-        { "nombre": "MIEL ANTARTICO FROZEN", "descripcion": "Jack honey, crema de coco, syrup simple y jugo de piña.", "precio": 7950 },
-        { "nombre": "DIABLO ETERNO", "descripcion": "Licor 43, tequila añejado y licor de café.", "precio": 7950 },
-        { "nombre": "SUMMER SPRITS", "descripcion": "Vodka de mango, st germain y mix de cítricos.", "precio": 7950 },
-        { "nombre": "VIRGIN COLADA", "descripcion": "Crema de coco y jugo de piña. (Sin alcohol)", "precio": 6750 },
-        { "nombre": "MOJITO SIN ALCOHOL", "descripcion": "Hierbabuena, limón, syrup simple y agua con gas.", "precio": 5950 }
+{
+  "menu": {
+    "Cocteles de Autor": [
+      {
+        "nombre": "Hawai",
+        "ingredientes": "Crema de coco, licor Malibú, gin, ron blanco",
+        "precio": 8000
+      },
+      {
+        "nombre": "Apple Fresh",
+        "ingredientes": "Jugo de limón, syrup de piña, pisco apple y Red Bull sabor sandía",
+        "precio": 8950
+      },
+      {
+        "nombre": "Jardin de Rosas",
+        "ingredientes": "Jugo de limón, gin pink, Chambord, pulpa de frutilla y agua tónica",
+        "precio": 7950
+      },
+      {
+        "nombre": "Woman Fizz",
+        "ingredientes": "Jugo de limón, syrup simple, gin, Ramazzotti, Malibú y mix de cítricos y maracuya",
+        "precio": 8750
+      },
+      {
+        "nombre": "Espreso 43",
+        "ingredientes": "Amaretto, vodka, shot de espresso, crema de leche y licor 43",
+        "precio": 8950
+      },
+      {
+        "nombre": "Miel Antartico Frozen",
+        "ingredientes": "Jack Honey, crema de coco, syrup simple y jugo de piña",
+        "precio": 7950
+      },
+      {
+        "nombre": "Diablo Eterno",
+        "ingredientes": "Licor 43, tequila añejado y licor de café",
+        "precio": 7950
+      },
+      {
+        "nombre": "Summer Sprits",
+        "ingredientes": "Vodka de mango, St Germain y mix de cítricos",
+        "precio": 7950
+      }
+    ],
+    "Mocktails": [
+      {
+        "nombre": "Virgin Colada",
+        "ingredientes": "Crema de coco y jugo de piña",
+        "precio": 6750
+      },
+      {
+        "nombre": "Mojito Sin Alcohol",
+        "ingredientes": "Hierbabuena, limón, syrup simple y agua con gas",
+        "precio": 5950
+      },
+      {
+        "nombre": "Limonada Sabores",
+        "precio": 3950
+      },
+      {
+        "nombre": "Virgin Hawai",
+        "ingredientes": "Crema de coco, jugo de maracuya y syrup simple",
+        "precio": 5750
+      },
+      {
+        "nombre": "Rojo Atardecer",
+        "ingredientes": "Jugo de pomelo, granadina y tónica",
+        "precio": 5750
+      }
+    ],
+    "Red Bull Drinks": [
+      {
+        "nombre": "Tropical Gin",
+        "ingredientes": "Gin + Red Bull Maracuya (con pulpa)",
+        "precio": 10000,
+        "precio_sin_pulpa": 9000
+      },
+      {
+        "nombre": "Wild Dragon",
+        "ingredientes": "Ballantine Wild + Red Bull Fruta del Dragón (con pulpa)",
+        "precio": 10000,
+        "precio_sin_pulpa": 9000
+      },
+      {
+        "nombre": "Gin de Verano",
+        "ingredientes": "Gin + Red Bull Sandia (con pulpa)",
+        "precio": 10000,
+        "precio_sin_pulpa": 9000
+      },
+      {
+        "nombre": "Jagger Bull",
+        "ingredientes": "Red Bull tradicional servido en frappe con shot de Jägermeister",
+        "precio": 7950
+      },
+      {
+        "nombre": "Bull Acai",
+        "ingredientes": "Limón, gin y sirup",
+        "precio": 8950
+      },
+      {
+        "nombre": "Summer Bull",
+        "ingredientes": "Limón, St-Germain, ginger, Red Bull y flor de sauco",
+        "precio": 8950
+      },
+      {
+        "nombre": "Sunset Bull",
+        "ingredientes": "Limon, syrup, vodka, Red Bull de maracuya y Red Bull de sandia",
+        "precio": 8950
+      }
+    ],
+    "Cocteleria Clasica": {
+      "Gin": [
+        {
+          "nombre": "Tom Collins",
+          "precio": 7200
+        },
+        {
+          "nombre": "Bramble",
+          "precio": 7200
+        },
+        {
+          "nombre": "Martini Dry",
+          "precio": 6100
+        },
+        {
+          "nombre": "Negroni",
+          "precio": 7950
+        },
+        {
+          "nombre": "Clover Club",
+          "precio": 6900
+        },
+        {
+          "nombre": "London Mule",
+          "precio": 7900
+        }
+      ],
+      "Pisco": [
+        {
+          "nombre": "Pisco Sour",
+          "precio": 6200
+        },
+        {
+          "nombre": "Pichuncho",
+          "precio": 5750
+        },
+        {
+          "nombre": "Apple Sour",
+          "precio": 6550
+        },
+        {
+          "nombre": "Mojito Elquino",
+          "precio": 6450
+        },
+        {
+          "nombre": "Honey Sour",
+          "precio": 6550
+        }
+      ],
+      "Vodka": [
+        {
+          "nombre": "Moscow Mule",
+          "precio": 6950
+        },
+        {
+          "nombre": "Ruso Negro",
+          "precio": 6750
+        },
+        {
+          "nombre": "Cosmopolitan",
+          "precio": 6950
+        },
+        {
+          "nombre": "Espresso Martini",
+          "precio": 7200
+        },
+        {
+          "nombre": "Laguna Azul",
+          "precio": 6200
+        }
+      ],
+      "Ron": [
+        {
+          "nombre": "Daiquiri Clásico",
+          "precio": 6450
+        },
+        {
+          "nombre": "Daiquiri Sabores",
+          "precio": 6950
+        },
+        {
+          "nombre": "Mojito Cubano",
+          "precio": 5950
+        },
+        {
+          "nombre": "Mojito Sabores",
+          "precio": 6950
+        },
+        {
+          "nombre": "Piña Colada",
+          "precio": 7250
+        },
+        {
+          "nombre": "Caipirisima",
+          "precio": 5950
+        },
+        {
+          "nombre": "Dark And Stormy",
+          "precio": 5900
+        },
+        {
+          "nombre": "Mai Tai",
+          "precio": 7900
+        }
+      ],
+      "Whisky": [
+        {
+          "nombre": "Boulevardier",
+          "precio": 7950
+        },
+        {
+          "nombre": "Penicilin",
+          "precio": 6900
+        },
+        {
+          "nombre": "Goodfather",
+          "precio": 6900
+        },
+        {
+          "nombre": "Rusty Nail",
+          "precio": 6900
+        },
+        {
+          "nombre": "Mint Julep",
+          "precio": 7900
+        },
+        {
+          "nombre": "Manhattan",
+          "precio": 7200
+        },
+        {
+          "nombre": "Old Fashioned",
+          "precio": 7900
+        },
+        {
+          "nombre": "New York Sour",
+          "precio": 6750
+        },
+        {
+          "nombre": "Whisky Sour",
+          "precio": 6200
+        }
       ]
     },
-    {
-      "categoria": "Coctelería Clásica",
-      "items": [
-        { "nombre": "TOM COLLINS", "descripcion": "Ginebra con jugo de limón, jarabe simple y un toque de soda.", "precio": 7200 },
-        { "nombre": "BRAMBLE", "descripcion": "Ginebra con jugo de limón, puré de moras y licor chambord.", "precio": 7200 },
-        { "nombre": "MARTINI DRY", "descripcion": "Ginebra con vermut extra dry y una aceituna sevillana.", "precio": 6100 },
-        { "nombre": "NEGRONI", "descripcion": "Ginebra con vermut y campari.", "precio": 7950 },
-        { "nombre": "CLOVER CLUB", "descripcion": "Ginebra con jugo de limón, jarabe simple, pulpa de frambuesa y albumina.", "precio": 6900 },
-        { "nombre": "LONDON MULE", "descripcion": "Ginebra, jugo de limón y ginger beer.", "precio": 7900 },
-        { "nombre": "PISCO SOUR", "descripcion": "Pisco transparente con jugo de limón, jarabe simple y albumina.", "precio": 6200 },
-        { "nombre": "PICHUNCHO", "descripcion": "Vermut rosso combinado con pisco añejado en barricas tostadas.", "precio": 5750 },
-        { "nombre": "APPLE SOUR", "descripcion": "Pisco transparente con jugo de limón, jarabe simple, manzana verde y albumina.", "precio": 6550 },
-        { "nombre": "MOJITO ELQUINO", "descripcion": "Pisco transparente con jugo de limón, arrope de papaya, menta fresca y maracuyá.", "precio": 6450 }
+    "Destilados": {
+      "Whisky": [
+        {
+          "nombre": "Ballantine's Scotch 40°",
+          "precio": 6450
+        },
+        {
+          "nombre": "Chivas 12 Años",
+          "precio": 8450
+        },
+        {
+          "nombre": "Chivas 18 Años",
+          "precio": 13450
+        },
+        {
+          "nombre": "Jack Daniel's N° 7",
+          "precio": 7750
+        },
+        {
+          "nombre": "Jack Daniel's (Honey/Fire/Apple)",
+          "precio": 8450
+        },
+        {
+          "nombre": "Jack Daniel's Gentleman",
+          "precio": 13450
+        },
+        {
+          "nombre": "Jack Daniel's Single Barrel",
+          "precio": 18450
+        },
+        {
+          "nombre": "Johnnie Walker Red Label",
+          "precio": 6450
+        },
+        {
+          "nombre": "Johnnie Walker Black Label",
+          "precio": 8950
+        },
+        {
+          "nombre": "Johnnie Walker Double Black",
+          "precio": 13450
+        },
+        {
+          "nombre": "Johnnie Walker Gold Label",
+          "precio": 29950
+        },
+        {
+          "nombre": "Johnnie Walker Blue Label",
+          "precio": 59950
+        }
+      ],
+      "Tequila": [
+        {
+          "nombre": "Herradura Reposado",
+          "precio": 6450
+        },
+        {
+          "nombre": "Olmeca Blanco",
+          "precio": 5450
+        },
+        {
+          "nombre": "Olmeca Dorado",
+          "precio": 5950
+        },
+        {
+          "nombre": "Jimador Blanco",
+          "precio": 4950
+        },
+        {
+          "nombre": "José Cuervo Blanco",
+          "precio": 5000
+        },
+        {
+          "nombre": "José Cuervo Reposado",
+          "precio": 5950
+        },
+        {
+          "nombre": "Don Julio",
+          "precio": 11950
+        }
+      ],
+      "Gin": [
+        {
+          "nombre": "Beefeater",
+          "precio": 6950
+        },
+        {
+          "nombre": "Beefeater Pink",
+          "precio": 6950
+        },
+        {
+          "nombre": "Beefeater Orange",
+          "precio": 6950
+        },
+        {
+          "nombre": "Bombay",
+          "precio": 7450
+        },
+        {
+          "nombre": "Kantal",
+          "precio": 6450
+        },
+        {
+          "nombre": "Tanqueray",
+          "precio": 7950
+        },
+        {
+          "nombre": "Tanqueray Royal",
+          "precio": 8950
+        },
+        {
+          "nombre": "Tanqueray Sevilla",
+          "precio": 8950
+        },
+        {
+          "nombre": "Tanqueray Ten",
+          "precio": 9950
+        },
+        {
+          "nombre": "Bulldog",
+          "precio": 9450
+        },
+        {
+          "nombre": "Hendricks",
+          "precio": 10450
+        }
+      ],
+      "Ron": [
+        {
+          "nombre": "Zacapa 12 Años",
+          "precio": 9450
+        },
+        {
+          "nombre": "Zacapa 23 Años",
+          "precio": 13950
+        },
+        {
+          "nombre": "Havana Selección De Maestro",
+          "precio": 10450
+        },
+        {
+          "nombre": "Havana 7 Años",
+          "precio": 7950
+        },
+        {
+          "nombre": "Havana Especial",
+          "precio": 5750
+        },
+        {
+          "nombre": "Havana Reserva",
+          "precio": 6450
+        },
+        {
+          "nombre": "Pampero Especial",
+          "precio": 5450
+        },
+        {
+          "nombre": "Malibu",
+          "precio": 5950
+        }
+      ],
+      "Vodka": [
+        {
+          "nombre": "Wyborowa",
+          "precio": 5450
+        },
+        {
+          "nombre": "Absolut Blue",
+          "precio": 6450
+        },
+        {
+          "nombre": "Absolut Sabores",
+          "precio": 6950
+        }
+      ],
+      "Pisco": [
+        {
+          "nombre": "Mistral 35°",
+          "precio": 5750
+        },
+        {
+          "nombre": "Mistral 40°",
+          "precio": 6450
+        },
+        {
+          "nombre": "Mistral Nobel",
+          "precio": 7450
+        },
+        {
+          "nombre": "Mistral Gran Nobel",
+          "precio": 8950
+        },
+        {
+          "nombre": "Mistral Barrica Tostada",
+          "precio": 6950
+        },
+        {
+          "nombre": "Mistral Apple",
+          "precio": 7450
+        },
+        {
+          "nombre": "Mistral Nobel Fire",
+          "precio": 7450
+        },
+        {
+          "nombre": "Mistral Nobel Honey",
+          "precio": 7450
+        },
+        {
+          "nombre": "Alto Del Carmen 35°",
+          "precio": 5750
+        },
+        {
+          "nombre": "Alto Del Carmen 40°",
+          "precio": 6450
+        },
+        {
+          "nombre": "Alto Del Carmen Envejecido",
+          "precio": 7950
+        },
+        {
+          "nombre": "Alto Del Carmen Trasparente 40°",
+          "precio": 7450
+        },
+        {
+          "nombre": "Alto Del Carmen Etiqueta Negra",
+          "precio": 8450
+        },
+        {
+          "nombre": "Alto Del Carmen Etiqueta Blanca",
+          "precio": 8950
+        },
+        {
+          "nombre": "Gobernador 35°",
+          "precio": 7950
+        },
+        {
+          "nombre": "Gobernador 40°",
+          "precio": 8450
+        },
+        {
+          "nombre": "Kappa",
+          "precio": 8950
+        },
+        {
+          "nombre": "Bou Barroeta",
+          "precio": 8450
+        },
+        {
+          "nombre": "Fundo De Los Nichos 35°",
+          "precio": 6450
+        },
+        {
+          "nombre": "Fundo De Los Nichos 40°",
+          "precio": 6950
+        },
+        {
+          "nombre": "Espíritu Del Elqui 40°",
+          "precio": 7950
+        },
+        {
+          "nombre": "Horcón Quemado 35°",
+          "precio": 6450
+        },
+        {
+          "nombre": "Horcón Quemado 40°",
+          "precio": 6950
+        },
+        {
+          "nombre": "Horcón Quemado 46°",
+          "precio": 8450
+        },
+        {
+          "nombre": "Tololo Blue 40° Doble Destilado",
+          "precio": 8450
+        },
+        {
+          "nombre": "Tololo Black Añejado 40°",
+          "precio": 8950
+        },
+        {
+          "nombre": "Waqar",
+          "precio": 8950
+        },
+        {
+          "nombre": "Republicano 40° Triple Destilado",
+          "precio": 8450
+        },
+        {
+          "nombre": "Republicano Añejado 40°",
+          "precio": 8950
+        }
       ]
     },
-    {
-      "categoria": "Destilados Populares",
-      "items": [
-        { "nombre": "BALLANTINE'S SCOTCH 40°", "descripcion": "Corto + Bebida 220ml", "precio": 6450 },
-        { "nombre": "CHIVAS 12 AÑOS", "descripcion": "Corto + Bebida 220ml", "precio": 8450 },
-        { "nombre": "JACK DANIEL'S N° 7", "descripcion": "Corto + Bebida 220ml", "precio": 7750 },
-        { "nombre": "BEEFEATER", "descripcion": "Corto + Bebida 220ml", "precio": 6950 },
-        { "nombre": "BOMBAY", "descripcion": "Corto + Bebida 220ml", "precio": 7450 },
-        { "nombre": "ZACAPA 12 AÑOS", "descripcion": "Corto + Bebida 220ml", "precio": 9450 },
-        { "nombre": "HAVANA 7 AÑOS", "descripcion": "Corto + Bebida 220ml", "precio": 7950 },
-        { "nombre": "ABSOLUT BLUE", "descripcion": "Corto + Bebida 220ml", "precio": 6450 },
-        { "nombre": "MISTRAL 35°", "descripcion": "Corto + Bebida 220ml", "precio": 5750 },
-        { "nombre": "ALTO DEL CARMEN 40°", "descripcion": "Corto + Bebida 220ml", "precio": 6450 }
-      ]
-    }
-  ]
+    "Licores": [
+      {
+        "nombre": "Drambuile",
+        "precio": 6950
+      },
+      {
+        "nombre": "Baileys",
+        "precio": 6950
+      },
+      {
+        "nombre": "Fernet",
+        "precio": 5950
+      },
+      {
+        "nombre": "Disaronno",
+        "precio": 7450
+      },
+      {
+        "nombre": "Jagermeister",
+        "precio": 6450
+      },
+      {
+        "nombre": "Campari",
+        "precio": 5950
+      },
+      {
+        "nombre": "St Germain",
+        "precio": 6450
+      },
+      {
+        "nombre": "Kahlua",
+        "precio": 5950
+      },
+      {
+        "nombre": "Chambord",
+        "precio": 7450
+      }
+    ],
+    "Vinos y Espumantes": [
+      {
+        "nombre": "Misiones De Rengo",
+        "precio": 10450
+      },
+      {
+        "nombre": "Riccadonna Asti / Ruby / Moscato",
+        "precio": 25000
+      },
+      {
+        "nombre": "Undurraga Brut",
+        "precio": 15450
+      },
+      {
+        "nombre": "Baron Lacroix",
+        "precio": 15450
+      },
+      {
+        "nombre": "Copa De Espumante",
+        "precio": 3950
+      }
+    ],
+    "Jugos y Bebidas Genéricas": [
+      {
+        "nombre": "Limonada Menta Jengibre",
+        "precio": 3250
+      },
+      {
+        "nombre": "Jugo Natural",
+        "precio": 3250
+      },
+      {
+        "nombre": "Agua Con O Sin Gas",
+        "precio": 2500
+      },
+      {
+        "nombre": "Bebidas Lata 350 ml",
+        "precio": 2450
+      },
+      {
+        "nombre": "Red Bull Variedades",
+        "precio": 3450
+      },
+      {
+        "nombre": "Red Bull Promoción (2)",
+        "precio": 5000
+      }
+    ]
+  }
 }

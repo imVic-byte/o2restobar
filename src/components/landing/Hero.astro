@@ -37,22 +37,6 @@ import siteInfo from "../../data/site_info.json";
   </div>
 
   <!-- Acentos Art-Decó en las 4 esquinas de la pantalla -->
-  <div
-    class="hidden md:block absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-accent/60 z-10 pointer-events-none"
-  >
-  </div>
-  <div
-    class="hidden md:block absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-accent/60 z-10 pointer-events-none"
-  >
-  </div>
-  <div
-    class="hidden md:block absolute bottom-8 left-6 w-8 h-8 border-b-2 border-l-2 border-accent/60 z-10 pointer-events-none"
-  >
-  </div>
-  <div
-    class="hidden md:block absolute bottom-8 right-6 w-8 h-8 border-b-2 border-r-2 border-accent/60 z-10 pointer-events-none"
-  >
-  </div>
 
   <!-- Contenido Principal Superpuesto -->
   <div
@@ -61,7 +45,7 @@ import siteInfo from "../../data/site_info.json";
     <div class="max-w-2xl flex flex-col items-start gap-6">
       <!-- Subtítulo / Badge de Identidad -->
       <div
-        class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-zinc-950/80 border border-accent/60 rounded-none text-accent font-headings text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(250,204,21,0.25)] backdrop-blur-md"
+        class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-zinc-950/80 border border-accent/60 rounded-md text-accent font-headings text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(250,204,21,0.25)] backdrop-blur-md"
       >
         <span class="text-xs">✦</span>
         <span>Oxígeno Multiespacio · Coquimbo</span>
@@ -72,15 +56,13 @@ import siteInfo from "../../data/site_info.json";
       <h1
         class="font-headings font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.1] uppercase"
       >
-        Sabor Único, <span
-          class="text-accent underline decoration-accent/40 decoration-wavy underline-offset-8"
-          >Coctelería</span
-        > & Música Frente al Mar
+        Sabor Único, <span class="text-accent">Coctelería</span> & Música Frente al
+        Mar
       </h1>
 
       <!-- Descripción Sensorial con Contraste Elevado -->
       <p
-        class="text-text-secondary font-body text-base sm:text-lg leading-relaxed max-w-xl"
+        class="text-white font-body text-base sm:text-lg leading-relaxed max-w-xl"
       >
         Ubicados en plena Costanera de Coquimbo. Disfruta de una experiencia
         completa: gastronomía gourmet, coctelería de autor, terraza pet-friendly
@@ -92,7 +74,7 @@ import siteInfo from "../../data/site_info.json";
         <!-- CTA Principal: Menú -->
         <a
           href="/menu"
-          class="relative group overflow-hidden px-8 py-4 bg-accent text-zinc-950 font-headings font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(250,204,21,0.4)] hover:bg-accent-hover transition-all active:scale-95 flex items-center gap-2"
+          class="relative group rounded-md overflow-hidden px-8 py-4 bg-accent text-zinc-950 font-headings font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(250,204,21,0.4)] hover:bg-accent-hover transition-all active:scale-95 flex items-center gap-2"
         >
           <span>Explorar Carta Digital</span>
           <svg
@@ -108,10 +90,6 @@ import siteInfo from "../../data/site_info.json";
               stroke-width="2.5"
               d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
-          <div
-            class="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none animate-shimmer"
-          >
-          </div>
         </a>
 
         <!-- CTA Secundario: Reservas -->
@@ -119,7 +97,7 @@ import siteInfo from "../../data/site_info.json";
           href={siteInfo.contact.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="px-7 py-4 bg-zinc-950/85 border border-zinc-700 hover:border-accent text-text-primary hover:text-accent font-headings font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 flex items-center gap-2 shadow-lg"
+          class="px-7 py-4 rounded-md bg-zinc-950/85 border border-zinc-700 hover:border-accent text-text-primary hover:text-accent font-headings font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 flex items-center gap-2 shadow-lg"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +115,7 @@ import siteInfo from "../../data/site_info.json";
 
       <!-- Micro badges de características destacadas -->
       <div
-        class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-accent/25 w-full mt-2 text-xs text-text-secondary/90"
+        class="grid text-white grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-accent/25 w-full mt-2 text-xs text-text-secondary/90"
       >
         <div class="flex items-center gap-2">
           <span class="text-accent text-base">🌊</span>
@@ -156,22 +134,6 @@ import siteInfo from "../../data/site_info.json";
           <span>Bar & Tragos</span>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Tag Flotante del Plato en la esquina inferior derecha (Desktop) -->
-  <div
-    class="hidden lg:flex absolute bottom-8 right-8 z-10 items-center gap-3 px-4 py-2.5 bg-zinc-950/80 backdrop-blur-md border border-accent/40 shadow-2xl"
-  >
-    <div class="w-2 h-2 rounded-full bg-accent animate-ping"></div>
-    <div class="flex flex-col">
-      <span
-        class="text-[10px] font-headings uppercase tracking-widest text-accent font-bold"
-        >Especialidad de la Casa</span
-      >
-      <span class="text-xs font-body text-text-primary"
-        >Cocina de Autor & Sabores del Mar</span
-      >
     </div>
   </div>
 
