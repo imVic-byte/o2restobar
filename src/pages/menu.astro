@@ -247,6 +247,7 @@ const getImage = (name: string) => {
                   opciones={item.opciones}
                   imagen={getImage(item.nombre)}
                   isTabla={section.isTabla}
+                  categoria={section.title}
                 />
               ))}
             </div>
@@ -268,6 +269,7 @@ const getImage = (name: string) => {
                         precio={item.precio}
                         opciones={item.opciones}
                         imagen={getImage(item.nombre)}
+                        categoria={section.title}
                       />
                     ))}
                   </div>
@@ -332,6 +334,7 @@ const getImage = (name: string) => {
                   precio_sin_pulpa={item.precio_sin_pulpa}
                   opciones={item.opciones}
                   imagen={getImage(item.nombre)}
+                  categoria={section.title}
                 />
               ))}
             </div>
@@ -356,6 +359,7 @@ const getImage = (name: string) => {
                         precio_sin_pulpa={item.precio_sin_pulpa}
                         opciones={item.opciones}
                         imagen={getImage(item.nombre)}
+                        categoria={section.title}
                       />
                     ))}
                   </div>
@@ -395,6 +399,7 @@ const getImage = (name: string) => {
                   precio={item.precio}
                   precio_sin_pulpa={item.precio_sin_pulpa}
                   imagen={getImage(item.nombre)}
+                  categoria={section.title}
                 />
               ))}
             </div>
@@ -416,6 +421,7 @@ const getImage = (name: string) => {
                         precio={item.precio}
                         precio_sin_pulpa={item.precio_sin_pulpa}
                         imagen={getImage(item.nombre)}
+                        categoria={section.title}
                       />
                     ))}
                   </div>
@@ -476,6 +482,145 @@ const getImage = (name: string) => {
         </button>
       </div>
     </div>
+  </div>
+
+  <!-- Toast Flotante No Invasivo de Upselling / Recomendación de Acompañamiento -->
+  <div 
+    id="upsellToast" 
+    class="fixed bottom-20 sm:bottom-6 left-1/2 -translate-x-1/2 w-[92%] sm:w-auto sm:min-w-[390px] sm:max-w-md z-40 translate-y-28 opacity-0 pointer-events-none transition-all duration-300 ease-out"
+    role="alert"
+    aria-live="polite"
+  >
+    <div class="p-3.5 sm:p-4 bg-zinc-950/95 border-2 border-accent shadow-2xl backdrop-blur-md flex flex-col gap-2.5 rounded-none text-white">
+      <!-- Fila superior: Producto añadido y cerrar -->
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2 overflow-hidden">
+          <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent text-zinc-950 text-xs font-black shrink-0">✓</span>
+          <div class="flex items-center gap-1.5 truncate">
+            <span class="text-xs font-headings font-bold text-accent truncate" id="upsellToastAddedName">Producto</span>
+            <span class="text-[11px] text-zinc-300 font-body shrink-0">añadido</span>
+          </div>
+        </div>
+        <button 
+          id="closeUpsellToast" 
+          type="button"
+          class="text-zinc-400 hover:text-accent text-sm p-1 leading-none cursor-pointer shrink-0 transition-colors"
+          aria-label="Cerrar notificación"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Separador punteado -->
+      <div class="w-full border-b border-dashed border-accent/30"></div>
+
+      <!-- Fila inferior: Sugerencia de acompañamiento con adición en 1 clic -->
+      <div class="flex items-center justify-between gap-3 bg-zinc-900/80 p-2.5 border border-accent/30">
+        <div class="flex flex-col min-w-0">
+          <span class="text-[10px] font-headings uppercase tracking-wider text-accent font-bold flex items-center gap-1">
+            <span>✨</span> ¿Sumar acompañamiento?
+          </span>
+          <span id="upsellToastSuggestionName" class="text-xs text-white font-headings font-semibold truncate">
+            Toppings Salsa Extra
+          </span>
+        </div>
+        <button
+          id="upsellToastAddBtn"
+          type="button"
+          class="shrink-0 px-3 py-1.5 bg-accent hover:bg-accent-hover text-zinc-950 font-headings font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1 shadow-sm active:scale-95"
+        >
+          <span>+</span>
+          <span id="upsellToastAddPrice">$1.500</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón Flotante del Carrito (Resumen) -->
+  <div 
+    id="floatingCartContainer"
+    class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-300"
+  >
+    <button
+      id="openCartBtn"
+      type="button"
+      class="flex items-center gap-3 px-3.5 py-2 sm:px-4 sm:py-2.5 bg-zinc-950/95 hover:bg-zinc-900 border-2 border-accent text-text-primary shadow-2xl backdrop-blur-md cursor-pointer hover:scale-105 active:scale-95 transition-all group rounded-none"
+      aria-label="Ver resumen de pedido"
+    >
+      <div class="relative flex items-center justify-center">
+        <span class="text-xl">🛍️</span>
+        <span 
+          id="cartCountBadge" 
+          class="absolute -top-2 -right-2.5 bg-accent text-zinc-950 font-headings font-black text-[10px] w-5 h-5 flex items-center justify-center rounded-full shadow-sm"
+        >
+          0
+        </span>
+      </div>
+      <div class="flex flex-col items-start leading-tight">
+        <span class="text-[10px] uppercase font-headings tracking-wider text-text-secondary">Tu Pedido</span>
+        <span id="cartSubtotalBadge" class="text-xs font-headings font-bold text-accent">$0</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Drawer del Carrito / Resumen del Pedido -->
+  <div 
+    id="cartDrawerBackdrop" 
+    class="fixed inset-0 z-50 bg-black/75 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300"
+  >
+    <aside 
+      id="cartDrawer" 
+      class="fixed top-0 right-0 h-full w-full max-w-md bg-zinc-950 border-l-2 border-accent shadow-2xl flex flex-col justify-between translate-x-full transition-transform duration-300 ease-out z-50"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Resumen de tu pedido"
+    >
+      <!-- Encabezado del Drawer -->
+      <div class="p-4 sm:p-5 border-b border-dashed border-accent/40 flex items-center justify-between bg-zinc-950/90">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">🛍️</span>
+          <div>
+            <h2 class="font-headings font-bold text-base text-text-primary uppercase tracking-wider">
+              Resumen del Pedido
+            </h2>
+            <p class="text-[11px] text-text-secondary font-body">
+              <span id="drawerItemCount">0</span> items seleccionados
+            </p>
+          </div>
+        </div>
+        <button 
+          id="closeCartDrawer" 
+          type="button"
+          class="text-accent hover:text-white text-xl font-bold p-1.5 cursor-pointer transition-colors"
+          aria-label="Cerrar resumen de pedido"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Lista de Items en el Carrito (Scrollable) -->
+      <div id="cartItemsList" class="flex-1 overflow-y-auto p-4 sm:p-5 flex flex-col gap-3">
+        <!-- Generado dinámicamente vía JavaScript -->
+      </div>
+
+      <!-- Pie del Drawer: Total y Botón Vaciar -->
+      <div class="p-4 sm:p-5 border-t border-accent/40 bg-zinc-900/60 flex flex-col gap-3">
+        <div class="flex items-center justify-between text-sm py-1">
+          <span class="font-headings text-text-secondary uppercase tracking-wider text-xs">Total Estimado:</span>
+          <span id="drawerCartTotal" class="font-headings font-extrabold text-xl text-accent">$0</span>
+        </div>
+
+        <div class="pt-2 border-t border-zinc-800 flex items-center gap-2">
+          <button
+            id="clearCartBtn"
+            type="button"
+            class="w-full py-2 bg-zinc-900 hover:bg-zinc-800 text-text-secondary hover:text-accent border border-zinc-700 hover:border-accent text-xs font-headings font-bold uppercase tracking-wider transition-all cursor-pointer"
+          >
+            Vaciar Carrito
+          </button>
+        </div>
+      </div>
+    </aside>
   </div>
 </Layout>
 
@@ -752,4 +897,370 @@ const getImage = (name: string) => {
   } else {
     switchTab('rooftop');
   }
+
+  // ==========================================================
+  // SISTEMA DE CARRITO EN CACHÉ & UPSELLING DE ACOMPAÑAMIENTOS
+  // ==========================================================
+  interface CartItem {
+    id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    category?: string;
+  }
+
+  interface Accompaniment {
+    name: string;
+    price: number;
+    category?: string;
+  }
+
+  const CART_STORAGE_KEY = 'o2_restobar_cart';
+
+  function formatCurrency(amount: number): string {
+    return new Intl.NumberFormat("es-CL", {
+      style: "currency",
+      currency: "CLP",
+      maximumFractionDigits: 0,
+    }).format(amount);
+  }
+
+  function getStoredCart(): CartItem[] {
+    try {
+      const data = localStorage.getItem(CART_STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      console.error('Error leyendo carrito de localStorage:', e);
+      return [];
+    }
+  }
+
+  function saveStoredCart(cart: CartItem[]): void {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+      console.error('Error guardando carrito en localStorage:', e);
+    }
+  }
+
+  // Elementos del Carrito & Drawer
+  const cartCountBadge = document.getElementById('cartCountBadge');
+  const cartSubtotalBadge = document.getElementById('cartSubtotalBadge');
+  const openCartBtn = document.getElementById('openCartBtn');
+  const cartDrawerBackdrop = document.getElementById('cartDrawerBackdrop');
+  const cartDrawer = document.getElementById('cartDrawer');
+  const closeCartDrawer = document.getElementById('closeCartDrawer');
+  const cartItemsList = document.getElementById('cartItemsList');
+  const drawerItemCount = document.getElementById('drawerItemCount');
+  const drawerCartTotal = document.getElementById('drawerCartTotal');
+  const clearCartBtn = document.getElementById('clearCartBtn');
+
+  // Elementos del Toast de Upselling
+  const upsellToast = document.getElementById('upsellToast');
+  const upsellToastAddedName = document.getElementById('upsellToastAddedName');
+  const upsellToastSuggestionName = document.getElementById('upsellToastSuggestionName');
+  const upsellToastAddBtn = document.getElementById('upsellToastAddBtn');
+  const upsellToastAddPrice = document.getElementById('upsellToastAddPrice');
+  const closeUpsellToast = document.getElementById('closeUpsellToast');
+
+  let toastTimeoutId: ReturnType<typeof setTimeout> | null = null;
+  let currentSuggestion: Accompaniment | null = null;
+
+  // Renderizar la interfaz del carrito
+  function updateCartUI() {
+    const cart = getStoredCart();
+    const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+    // Actualizar badges flotantes
+    if (cartCountBadge) cartCountBadge.textContent = totalCount.toString();
+    if (cartSubtotalBadge) cartSubtotalBadge.textContent = formatCurrency(totalPrice);
+
+    // Actualizar datos del drawer
+    if (drawerItemCount) drawerItemCount.textContent = totalCount.toString();
+    if (drawerCartTotal) drawerCartTotal.textContent = formatCurrency(totalPrice);
+
+    // Renderizar lista en el drawer
+    if (!cartItemsList) return;
+
+    if (cart.length === 0) {
+      cartItemsList.innerHTML = `
+        <div class="h-full flex flex-col items-center justify-center text-center p-6 text-text-secondary my-auto">
+          <span class="text-4xl mb-3 opacity-60">🍽️</span>
+          <h4 class="font-headings font-bold text-sm text-text-primary uppercase tracking-wider mb-1">
+            Tu carrito está vacío
+          </h4>
+          <p class="text-xs text-text-secondary font-body max-w-xs leading-relaxed">
+            Añade hamburguesas, tablas, cócteles o cafés desde la carta para armar tu pedido.
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    cartItemsList.innerHTML = cart.map(item => `
+      <div class="flex items-center justify-between gap-3 p-3 bg-zinc-900/70 border border-accent/20 rounded-none transition-all hover:border-accent/50">
+        <div class="flex flex-col min-w-0 flex-1">
+          <span class="font-headings font-bold text-xs text-text-primary truncate" title="${item.name}">${item.name}</span>
+          <span class="text-[11px] text-accent font-headings font-semibold">${formatCurrency(item.price)} c/u</span>
+        </div>
+        <div class="flex items-center gap-2.5 shrink-0">
+          <div class="flex items-center border border-accent/40 bg-zinc-950">
+            <button 
+              type="button" 
+              class="btn-cart-minus px-2 py-0.5 text-accent hover:bg-accent hover:text-zinc-950 font-headings font-bold text-xs cursor-pointer transition-colors" 
+              data-id="${item.id}"
+              aria-label="Disminuir cantidad"
+            >-</button>
+            <span class="px-2 text-xs font-headings font-bold text-white min-w-[22px] text-center">${item.quantity}</span>
+            <button 
+              type="button" 
+              class="btn-cart-plus px-2 py-0.5 text-accent hover:bg-accent hover:text-zinc-950 font-headings font-bold text-xs cursor-pointer transition-colors" 
+              data-id="${item.id}"
+              aria-label="Aumentar cantidad"
+            >+</button>
+          </div>
+          <span class="font-headings font-bold text-xs text-white min-w-[65px] text-right">${formatCurrency(item.price * item.quantity)}</span>
+          <button 
+            type="button" 
+            class="btn-cart-remove text-zinc-500 hover:text-red-400 p-1 cursor-pointer transition-colors" 
+            data-id="${item.id}" 
+            title="Eliminar producto"
+            aria-label="Eliminar ${item.name}"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Operaciones sobre el Carrito
+  function addToCart(name: string, price: number, category?: string) {
+    const cart = getStoredCart();
+    // Generar un ID único basado en nombre y precio
+    const id = (name + '-' + price).toLowerCase().replace(/[^a-z0-9]/g, '-');
+    const existingIndex = cart.findIndex(item => item.id === id);
+
+    if (existingIndex > -1) {
+      cart[existingIndex].quantity += 1;
+    } else {
+      cart.push({
+        id,
+        name,
+        price,
+        quantity: 1,
+        category: category || ''
+      });
+    }
+
+    saveStoredCart(cart);
+    updateCartUI();
+
+    // Pequeño rebote animado en el botón flotante
+    if (openCartBtn) {
+      openCartBtn.classList.add('scale-105', 'border-yellow-400');
+      setTimeout(() => {
+        openCartBtn.classList.remove('scale-105', 'border-yellow-400');
+      }, 300);
+    }
+  }
+
+  function updateItemQuantity(id: string, delta: number) {
+    let cart = getStoredCart();
+    const index = cart.findIndex(item => item.id === id);
+    if (index === -1) return;
+
+    cart[index].quantity += delta;
+    if (cart[index].quantity <= 0) {
+      cart = cart.filter(item => item.id !== id);
+    }
+
+    saveStoredCart(cart);
+    updateCartUI();
+  }
+
+  function removeFromCart(id: string) {
+    let cart = getStoredCart();
+    cart = cart.filter(item => item.id !== id);
+    saveStoredCart(cart);
+    updateCartUI();
+  }
+
+  function clearCart() {
+    saveStoredCart([]);
+    updateCartUI();
+  }
+
+  // Abrir y cerrar Drawer
+  function openCart() {
+    if (!cartDrawerBackdrop || !cartDrawer) return;
+    updateCartUI();
+    cartDrawerBackdrop.classList.remove('hidden');
+    setTimeout(() => {
+      cartDrawerBackdrop.classList.remove('opacity-0');
+      cartDrawer.classList.remove('translate-x-full');
+    }, 10);
+  }
+
+  function closeCart() {
+    if (!cartDrawerBackdrop || !cartDrawer) return;
+    cartDrawer.classList.add('translate-x-full');
+    cartDrawerBackdrop.classList.add('opacity-0');
+    setTimeout(() => {
+      cartDrawerBackdrop.classList.add('hidden');
+    }, 300);
+  }
+
+  openCartBtn?.addEventListener('click', openCart);
+  closeCartDrawer?.addEventListener('click', closeCart);
+  cartDrawerBackdrop?.addEventListener('click', (e) => {
+    if (e.target === cartDrawerBackdrop) closeCart();
+  });
+  clearCartBtn?.addEventListener('click', clearCart);
+
+  // Delegación de eventos para controles dentro del drawer
+  cartItemsList?.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const minusBtn = target.closest('.btn-cart-minus') as HTMLElement | null;
+    const plusBtn = target.closest('.btn-cart-plus') as HTMLElement | null;
+    const removeBtn = target.closest('.btn-cart-remove') as HTMLElement | null;
+
+    if (minusBtn && minusBtn.dataset.id) {
+      updateItemQuantity(minusBtn.dataset.id, -1);
+    } else if (plusBtn && plusBtn.dataset.id) {
+      updateItemQuantity(plusBtn.dataset.id, 1);
+    } else if (removeBtn && removeBtn.dataset.id) {
+      removeFromCart(removeBtn.dataset.id);
+    }
+  });
+
+  // ==========================================================
+  // REGLAS Y RECOMENDACIONES DE UPSELLING ("ACOMPAÑAMIENTO")
+  // ==========================================================
+  const ACCOMPANIMENT_OPTIONS: Record<string, Accompaniment[]> = {
+    burger: [
+      { name: "Toppings Salsa Extra", price: 1500, category: "Adicionales" },
+      { name: "Agrega Ración De Papas", price: 1500, category: "Adicionales" },
+      { name: "Bebidas Lata 350 ml", price: 2450, category: "Bebidas" }
+    ],
+    tabla: [
+      { name: "Pisco Sour", price: 6200, category: "Coctelería" },
+      { name: "Mojito Cubano", price: 5950, category: "Coctelería" },
+      { name: "Bebidas Lata 350 ml", price: 2450, category: "Bebidas" }
+    ],
+    plato: [
+      { name: "Copa De Espumante", price: 3950, category: "Vinos" },
+      { name: "Limonada Menta Jengibre", price: 3250, category: "Bebidas" },
+      { name: "Cheesecake Oreo", price: 4750, category: "Pasteles" }
+    ],
+    cafe: [
+      { name: "Muffin", price: 2000, category: "Pastelería" },
+      { name: "Dona Rellena", price: 2000, category: "Pastelería" },
+      { name: "Medias Lunas (3 Unidades)", price: 2500, category: "Pastelería" }
+    ],
+    bar: [
+      { name: "Papitas Onion Cheddar (450 gr)", price: 8950, category: "Piqueos" },
+      { name: "Empanadas Queso Camarón (5 un)", price: 7950, category: "Piqueos" },
+      { name: "Toppings Salsa Extra", price: 1500, category: "Adicionales" }
+    ],
+    default: [
+      { name: "Toppings Salsa Extra", price: 1500, category: "Adicionales" },
+      { name: "Bebidas Lata 350 ml", price: 2450, category: "Bebidas" },
+      { name: "Papitas Onion Cheddar (450 gr)", price: 8950, category: "Piqueos" }
+    ]
+  };
+
+  function getBestAccompaniment(addedName: string, category: string, cart: CartItem[]): Accompaniment {
+    const normCat = normalizeText(category);
+    let pool: Accompaniment[];
+
+    if (normCat.includes('burger') || normCat.includes('hot dog') || normCat.includes('sandwich') || normCat.includes('kids')) {
+      pool = ACCOMPANIMENT_OPTIONS.burger;
+    } else if (normCat.includes('tabla') || normCat.includes('piqueo')) {
+      pool = ACCOMPANIMENT_OPTIONS.tabla;
+    } else if (normCat.includes('plato') || normCat.includes('ceviche') || normCat.includes('ensalada') || normCat.includes('pizza')) {
+      pool = ACCOMPANIMENT_OPTIONS.plato;
+    } else if (normCat.includes('coffee') || normCat.includes('cafe') || normCat.includes('desayuno') || normCat.includes('pastel')) {
+      pool = ACCOMPANIMENT_OPTIONS.cafe;
+    } else if (normCat.includes('coctel') || normCat.includes('destilado') || normCat.includes('bar') || normCat.includes('vino') || normCat.includes('licor')) {
+      pool = ACCOMPANIMENT_OPTIONS.bar;
+    } else {
+      pool = ACCOMPANIMENT_OPTIONS.default;
+    }
+
+    const currentNames = new Set(cart.map(i => normalizeText(i.name)));
+    const addedNorm = normalizeText(addedName);
+
+    // Priorizar un acompañamiento que no esté en el carrito y que no sea el mismo item añadido
+    for (const candidate of pool) {
+      const candNorm = normalizeText(candidate.name);
+      if (!currentNames.has(candNorm) && candNorm !== addedNorm) {
+        return candidate;
+      }
+    }
+
+    return pool[0];
+  }
+
+  function hideUpsellToast() {
+    if (!upsellToast) return;
+    upsellToast.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+    upsellToast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+    if (toastTimeoutId) {
+      clearTimeout(toastTimeoutId);
+      toastTimeoutId = null;
+    }
+  }
+
+  function showUpsellToast(item: { name: string, price: number, category: string }) {
+    if (!upsellToast) return;
+    const cart = getStoredCart();
+    const suggestion = getBestAccompaniment(item.name, item.category, cart);
+    currentSuggestion = suggestion;
+
+    if (upsellToastAddedName) {
+      upsellToastAddedName.textContent = item.name;
+    }
+    if (upsellToastSuggestionName) {
+      upsellToastSuggestionName.textContent = suggestion.name;
+    }
+    if (upsellToastAddPrice) {
+      upsellToastAddPrice.textContent = `+${formatCurrency(suggestion.price)}`;
+    }
+
+    // Mostrar el popup con animación
+    upsellToast.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+    upsellToast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+    // Auto-cierre no invasivo a los 5.5 segundos
+    if (toastTimeoutId) clearTimeout(toastTimeoutId);
+    toastTimeoutId = setTimeout(hideUpsellToast, 5500);
+  }
+
+  closeUpsellToast?.addEventListener('click', hideUpsellToast);
+
+  upsellToastAddBtn?.addEventListener('click', () => {
+    if (!currentSuggestion) return;
+    addToCart(currentSuggestion.name, currentSuggestion.price, currentSuggestion.category);
+
+    // Feedback táctil en el botón del toast
+    const originalText = upsellToastAddPrice?.textContent || '';
+    if (upsellToastAddPrice) upsellToastAddPrice.textContent = '✓ Añadido';
+
+    setTimeout(() => {
+      hideUpsellToast();
+      if (upsellToastAddPrice) upsellToastAddPrice.textContent = originalText;
+    }, 700);
+  });
+
+  // Escuchar el evento global de adición al carrito emitido por Card.astro
+  window.addEventListener('o2:add-to-cart', ((e: CustomEvent) => {
+    const { name, price, category } = e.detail;
+    addToCart(name, price, category);
+    showUpsellToast({ name, price, category });
+  }) as EventListener);
+
+  // Inicializar estado del carrito al cargar
+  updateCartUI();
 </script>

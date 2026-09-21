@@ -9,6 +9,7 @@ interface Props {
   opciones?: string;
   imagen?: string;
   isTabla?: boolean;
+  categoria?: string;
 }
 
 const {
@@ -20,7 +21,8 @@ const {
   precio_sin_pulpa,
   opciones,
   imagen,
-  isTabla = false
+  isTabla = false,
+  categoria = ""
 } = Astro.props;
 
 const formatClp = (amount?: number) => {
@@ -83,28 +85,86 @@ const cleanName = badgeMatch ? nombre.replace(/\(.*?\)/, "").trim() : nombre;
         </div>
       </div>
 
-      <!-- Precios -->
-      <div class="shrink-0 flex flex-col items-end gap-1">
-        {precio !== undefined && precio > 0 && (
-          <span class="ds-price-badge font-headings font-bold text-white shrink-0">
-            {formatClp(precio)}
-          </span>
+      <!-- Precios y Botón de Pedido -->
+      <div class="shrink-0 flex flex-col items-end gap-1.5">
+        {precio !== undefined && precio > 0 && precio_mediano === undefined && precio_sin_pulpa === undefined && (
+          <div class="flex items-center gap-1.5">
+            <span class="ds-price-badge font-headings font-bold text-white shrink-0">
+              {formatClp(precio)}
+            </span>
+            <button
+              type="button"
+              class="btn-add-to-cart px-2.5 py-1 bg-accent/15 hover:bg-accent text-accent hover:text-zinc-950 border border-accent/50 hover:border-accent text-xs font-headings font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1 active:scale-95 shadow-xs"
+              data-name={cleanName}
+              data-price={precio}
+              data-category={categoria}
+              title={`Añadir ${cleanName} al pedido`}
+            >
+              <span class="text-xs leading-none font-bold">+</span>
+              <span class="btn-label">Pedir</span>
+            </button>
+          </div>
         )}
 
         {precio_sin_pulpa !== undefined && (
-          <span class="text-[10px] text-text-secondary font-body">
-            s/ pulpa: <strong class="text-accent">{formatClp(precio_sin_pulpa)}</strong>
-          </span>
+          <div class="flex flex-col items-end gap-1.5">
+            <div class="flex items-center gap-1.5">
+              <span class="ds-price-badge font-headings font-bold text-white shrink-0">
+                {formatClp(precio)}
+              </span>
+              <button
+                type="button"
+                class="btn-add-to-cart px-2 py-1 bg-accent/15 hover:bg-accent text-accent hover:text-zinc-950 border border-accent/50 text-[11px] font-headings font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1 active:scale-95"
+                data-name={`${cleanName} (c/ pulpa)`}
+                data-price={precio}
+                data-category={categoria}
+                title="Añadir con pulpa al pedido"
+              >
+                <span>+</span> <span class="btn-label">C/ Pulpa</span>
+              </button>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-[11px] text-text-secondary font-body">
+                s/ pulpa: <strong class="text-accent">{formatClp(precio_sin_pulpa)}</strong>
+              </span>
+              <button
+                type="button"
+                class="btn-add-to-cart px-2 py-0.5 bg-zinc-800 hover:bg-accent text-zinc-300 hover:text-zinc-950 border border-zinc-700 hover:border-accent text-[10px] font-headings font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1 active:scale-95"
+                data-name={`${cleanName} (s/ pulpa)`}
+                data-price={precio_sin_pulpa}
+                data-category={categoria}
+                title="Añadir sin pulpa al pedido"
+              >
+                <span>+</span> <span class="btn-label">S/ Pulpa</span>
+              </button>
+            </div>
+          </div>
         )}
 
         {precio_mediano !== undefined && precio_grande !== undefined && (
-          <div class="flex items-center gap-2">
-            <span class="inline-flex items-center px-2 py-1 bg-accent/15 border border-accent/40 text-accent text-xs font-headings font-bold">
-              Mediano {formatClp(precio_mediano)}
-            </span>
-            <span class="inline-flex items-center px-2 py-1 bg-accent/25 border border-accent text-accent text-xs font-headings font-bold">
-              Grande {formatClp(precio_grande)}
-            </span>
+          <div class="flex items-center gap-2 flex-wrap justify-end">
+            <button
+              type="button"
+              class="btn-add-to-cart px-2 py-1 bg-accent/15 hover:bg-accent text-accent hover:text-zinc-950 border border-accent/40 text-xs font-headings font-bold transition-all cursor-pointer flex items-center gap-1 active:scale-95"
+              data-name={`${cleanName} (Mediano)`}
+              data-price={precio_mediano}
+              data-category={categoria}
+              title="Añadir Mediano al pedido"
+            >
+              <span>+</span>
+              <span class="btn-label">Med. {formatClp(precio_mediano)}</span>
+            </button>
+            <button
+              type="button"
+              class="btn-add-to-cart px-2 py-1 bg-accent/25 hover:bg-accent text-accent hover:text-zinc-950 border border-accent text-xs font-headings font-bold transition-all cursor-pointer flex items-center gap-1 active:scale-95"
+              data-name={`${cleanName} (Grande)`}
+              data-price={precio_grande}
+              data-category={categoria}
+              title="Añadir Grande al pedido"
+            >
+              <span>+</span>
+              <span class="btn-label">Gde. {formatClp(precio_grande)}</span>
+            </button>
           </div>
         )}
       </div>
@@ -209,6 +269,11 @@ const cleanName = badgeMatch ? nombre.replace(/\(.*?\)/, "").trim() : nombre;
     card.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
 
+      // Si se hizo click en el botón de pedir, no abrir/cerrar foto
+      if (target.closest(".btn-add-to-cart")) {
+        return;
+      }
+
       if (target.classList.contains("dish-img") && img.src) {
         e.stopPropagation();
         if (typeof (window as any).openDishLightbox === "function") {
@@ -245,4 +310,40 @@ const cleanName = badgeMatch ? nombre.replace(/\(.*?\)/, "").trim() : nombre;
       }
     });
   });
+
+  // Manejador global para botones de añadir al pedido
+  if (!(window as any).__o2_add_to_cart_listener_attached) {
+    (window as any).__o2_add_to_cart_listener_attached = true;
+
+    document.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest(".btn-add-to-cart") as HTMLButtonElement | null;
+      if (!btn) return;
+      e.stopPropagation();
+
+      const name = btn.dataset.name || "";
+      const price = parseFloat(btn.dataset.price || "0");
+      const category = btn.dataset.category || "";
+
+      if (!name || isNaN(price) || price <= 0) return;
+
+      // Disparar evento global para el carrito y el popup de upselling
+      window.dispatchEvent(
+        new CustomEvent("o2:add-to-cart", {
+          detail: { name, price, category }
+        })
+      );
+
+      // Feedback táctil en el botón
+      const label = btn.querySelector(".btn-label");
+      if (label) {
+        const originalText = label.textContent;
+        label.textContent = "✓ Listo";
+        btn.classList.add("bg-accent!", "text-zinc-950!");
+        setTimeout(() => {
+          label.textContent = originalText;
+          btn.classList.remove("bg-accent!", "text-zinc-950!");
+        }, 900);
+      }
+    });
+  }
 </script>
