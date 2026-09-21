@@ -1,0 +1,149 @@
+---
+interface PillarItem {
+  id: string;
+  badgeNumber: string;
+  badgeLabel: string;
+  title: string;
+  description: string;
+  image: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+const pillars: PillarItem[] = [
+  {
+    id: "cocteleria",
+    badgeNumber: "01",
+    badgeLabel: "Bar & Mixología",
+    title: "Coctelería de Autor",
+    description: "Desde mocktails refrescantes hasta creaciones con gin, pisco y combinaciones tropicales preparadas por bartenders apasionados.",
+    image: "/images/coctel.webp",
+    ctaText: "Ver Tragos",
+    ctaLink: "/menu?tab=bar"
+  },
+  {
+    id: "gastronomia",
+    badgeNumber: "02",
+    badgeLabel: "Cocina & Mar",
+    title: "Platos Estrella",
+    description: "Nuestra cocina reúne carnes jugosas, pescados del día, lomo a lo pobre y platos reconfortantes pensados para una velada insuperable.",
+    image: "/images/plato.webp",
+    ctaText: "Ver Platos",
+    ctaLink: "/menu?tab=comida"
+  },
+  {
+    id: "burgers",
+    badgeNumber: "03",
+    badgeLabel: "Artesanal+",
+    title: "Burgers+",
+    description: "Nuestra aclamada línea de hamburguesas artesanales de 200g, smash burgers, queso mozzarella apanado y salsas de receta propia.",
+    image: "/images/hamburguesamenu.webp",
+    ctaText: "Ver Burgers",
+    ctaLink: "/menu?tab=comida"
+  }
+];
+---
+
+<section id="propuesta" class="py-16 md:py-24 px-4 relative z-10 border-t border-accent/20">
+  <div class="max-w-6xl mx-auto flex flex-col gap-12">
+    
+    <!-- Encabezado de Sección (Estilo editorial con detalles dorados de la referencia) -->
+    <div class="flex flex-col items-center text-center gap-3">
+      <div class="flex items-center gap-4 w-full max-w-lg">
+        <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-accent/40 to-accent"></div>
+        <span class="text-accent text-sm font-headings tracking-[0.3em] uppercase">Nuestra Esencia</span>
+        <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent via-accent/40 to-accent"></div>
+      </div>
+      
+      <h2 class="font-headings font-black text-2xl sm:text-4xl text-text-primary uppercase tracking-tight">
+        Propuesta <span class="text-accent">Gastronómica</span> & Barra
+      </h2>
+      
+      <p class="text-text-secondary font-body text-sm sm:text-base max-w-2xl">
+        Cada preparación está diseñada para disfrutarse sin prisas, maridada con la mejor selección de tragos y la vista a la bahía de Coquimbo.
+      </p>
+    </div>
+
+    <!-- Grid de 3 Columnas de Pilares -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      {pillars.map((pillar) => (
+        <div class="relative flex flex-col bg-zinc-950/70 border border-accent/35 rounded-none p-5 shadow-2xl shadow-black/80 group hover:border-accent hover:shadow-[0_0_20px_rgba(250,204,21,0.18)] transition-all duration-300">
+          
+          <!-- Esquinas doradas distintivas -->
+          <div class="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-2 border-l-2 border-accent"></div>
+          <div class="absolute -top-[1px] -right-[1px] w-3 h-3 border-t-2 border-r-2 border-accent"></div>
+          <div class="absolute -bottom-[1px] -left-[1px] w-3 h-3 border-b-2 border-l-2 border-accent"></div>
+          <div class="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-2 border-r-2 border-accent"></div>
+
+          <!-- Cabecera de la Tarjeta: Badge circular & Título -->
+          <div class="flex flex-col items-center text-center gap-3 pt-2 pb-4">
+            <div class="w-10 h-10 rounded-full border border-accent/70 bg-accent/10 flex items-center justify-center text-accent font-headings font-bold text-xs shadow-[0_0_10px_rgba(250,204,21,0.3)]">
+              {pillar.badgeNumber}
+            </div>
+            
+            <span class="text-[11px] font-headings uppercase tracking-widest text-accent/80">
+              {pillar.badgeLabel}
+            </span>
+            
+            <h3 class="font-headings font-bold text-xl text-text-primary group-hover:text-accent transition-colors">
+              {pillar.title}
+            </h3>
+            
+            <p class="text-text-secondary font-body text-xs leading-relaxed min-h-[55px]">
+              {pillar.description}
+            </p>
+          </div>
+
+          <!-- Separador estilizado -->
+          <div class="w-full flex items-center justify-center gap-3 my-2 opacity-60">
+            <div class="h-[1px] w-8 bg-accent/40"></div>
+            <span class="text-accent text-[10px]">✦</span>
+            <div class="h-[1px] w-8 bg-accent/40"></div>
+          </div>
+
+          <!-- Fotografía del Pilar -->
+          <div class="relative mt-2 overflow-hidden aspect-[4/3] rounded-xs bg-zinc-900 border border-accent/25">
+            <img 
+              src={pillar.image} 
+              alt={pillar.title} 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          </div>
+
+          <!-- Enlace / Botón a la carta -->
+          <a 
+            href={pillar.ctaLink} 
+            class="mt-4 py-2 px-3 text-center border border-accent/40 bg-zinc-900/60 hover:bg-accent hover:text-black font-headings text-xs font-bold uppercase tracking-wider text-accent transition-all flex items-center justify-center gap-2"
+          >
+            <span>{pillar.ctaText}</span>
+            <span class="text-sm font-bold">→</span>
+          </a>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Fila Inferior con Highlights y Botón Central a la Carta -->
+    <div class="mt-4 p-6 bg-zinc-950/50 border border-accent/25 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex flex-col gap-1 text-center md:text-left">
+        <h4 class="font-headings font-bold text-base text-text-primary uppercase tracking-wide">
+          ¿Listo para conocer todo lo que tenemos para ofrecer?
+        </h4>
+        <p class="text-text-secondary text-xs">
+          Explora nuestra carta digital completa con precios, ingredientes y buscador interactivo.
+        </p>
+      </div>
+
+      <a 
+        href="/menu" 
+        class="px-6 py-3 bg-accent text-zinc-950 font-headings font-black text-xs uppercase tracking-widest hover:bg-accent-hover transition-all shrink-0 shadow-[0_0_15px_rgba(250,204,21,0.25)] flex items-center gap-2"
+      >
+        <span>Abrir Carta Digital</span>
+        <span>✦</span>
+      </a>
+    </div>
+
+  </div>
+</section>

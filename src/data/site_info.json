@@ -1,0 +1,34 @@
+{
+  "name": "O2 Restobar",
+  "legalName": "Oxígeno Multiespacio",
+  "slogan": "Tus recuerdos se disfrutan mejor con un vaso en la mano, el contenido del vaso lo eliges tú",
+  "address": {
+    "full": "Av. Costanera 5700, 1780000 Coquimbo",
+    "street": "Av. Costanera 5700",
+    "city": "Coquimbo",
+    "country": "Chile",
+    "mapsUrl": "https://maps.google.com/?q=Av.+Costanera+5700,+Coquimbo"
+  },
+  "contact": {
+    "phone": "+56921626906",
+    "phoneDisplay": "+56 9 2162 6906",
+    "whatsappUrl": "https://api.whatsapp.com/send?phone=56921626906",
+    "whatsappMessage": "Hola O2 Restobar, me gustaría consultar por una reserva de mesa.",
+    "instagram": {
+      "handle": "@o2_oficial",
+      "url": "https://www.instagram.com/o2_oficial/?hl=es"
+    }
+  },
+  "hours": [
+    { "days": "Viernes y Sábado", "time": "09:00 – 05:00 hrs" },
+    { "days": "Jueves", "time": "09:00 – 04:00 hrs" },
+    { "days": "Domingo a Miércoles", "time": "09:00 – 02:30 hrs" }
+  ],
+  "features": [
+    "Vista al mar en plena Costanera",
+    "Desayunos y café desde las 09:00 AM",
+    "Terraza 100% Pet Friendly",
+    "Pista de baile con DJ en vivo",
+    "Coctelería de autor y cocina variada"
+  ]
+}

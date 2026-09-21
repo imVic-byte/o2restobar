@@ -15,7 +15,7 @@ const dishImages: Record<string, string> = {
   "PLAYA BRAVA": "/images/playabrava.webp",
 };
 ---
-<Layout>
+<Layout title="Carta Digital - O2 Restobar">
   <!-- Script síncrono que corre antes de pintar el DOM para cargar inmediatamente la pestaña seleccionada sin parpadeos -->
   <script is:inline>
     (function() {
@@ -46,16 +46,36 @@ const dishImages: Record<string, string> = {
   <header class="fixed top-0 left-0 w-full bg-background/20 backdrop-blur-md z-50 border-b border-accent/20 shadow-lg shadow-black/50 transition-all duration-300" id="mainHeader">
     <div class="max-w-3xl mx-auto px-4 py-2 flex flex-col gap-3">
       
-      <div class="flex items-center relative w-full h-20 transition-all duration-300" id="headerTopRow">
-        <div id="logoContainer" class="flex justify-start w-full transition-all duration-300">
+      <div class="flex items-center justify-between relative w-full h-16 transition-all duration-300" id="headerTopRow">
+        <!-- Enlace de Retorno a la Landing Page -->
+        <a 
+          href="/" 
+          class="flex items-center gap-1.5 text-text-secondary hover:text-accent font-headings text-xs uppercase tracking-wider transition-colors py-1.5 px-2 rounded-xs border border-transparent hover:border-accent/30"
+          aria-label="Volver a la portada principal"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span class="hidden sm:inline">Inicio</span>
+        </a>
+
+        <!-- Logotipo Central -->
+        <div id="logoContainer" class="flex justify-center transition-all duration-300">
           <a href="/" class="block">
-            <img src="/images/logo.webp" alt="O2 Restobar Logo" id="logoImg" class="h-10 w-auto object-contain drop-shadow-md transition-all duration-300" />
+            <img src="/images/logo.webp" alt="O2 Restobar Logo" id="logoImg" class="h-10 w-auto object-contain transition-all duration-300" loading="eager" fetchpriority="high" />
           </a>
         </div>
         
-        <button id="searchTrigger" class="text-text-primary hover:text-accent transition-colors absolute right-0 top-1/2 -translate-y-1/2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        </button>
+        <!-- Acciones: Búsqueda y Reservas -->
+        <div class="flex items-center gap-2">
+          <button 
+            id="searchTrigger" 
+            aria-label="Buscar en la carta"
+            class="text-text-primary hover:text-accent transition-colors p-2 rounded-xs hover:bg-zinc-900 border border-transparent hover:border-accent/30"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+        </div>
       </div>
 
       <div id="searchContainer" class="relative hidden opacity-0 transition-opacity duration-300">
@@ -94,7 +114,7 @@ const dishImages: Record<string, string> = {
           <!-- Cabecera de Categoría con divisores dorados y estrellas -->
           <div class="flex items-center gap-4 my-6">
             <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-accent/50 to-accent/80"></div>
-            <h2 class="font-headings text-lg md:text-xl font-bold uppercase tracking-widest text-accent flex items-center gap-2 drop-shadow-[0_0_6px_rgba(250,204,21,0.3)]">
+            <h2 class="font-headings text-lg md:text-xl font-bold uppercase tracking-widest text-accent flex items-center gap-2">
               <span class="text-xs">✦</span>
               {cat.categoria}
               <span class="text-xs">✦</span>
@@ -124,7 +144,7 @@ const dishImages: Record<string, string> = {
           <!-- Cabecera de Categoría con divisores dorados y estrellas -->
           <div class="flex items-center gap-4 my-6">
             <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-accent/50 to-accent/80"></div>
-            <h2 class="font-headings text-lg md:text-xl font-bold uppercase tracking-widest text-accent flex items-center gap-2 drop-shadow-[0_0_6px_rgba(250,204,21,0.3)]">
+            <h2 class="font-headings text-lg md:text-xl font-bold uppercase tracking-widest text-accent flex items-center gap-2">
               <span class="text-xs">✦</span>
               {cat.categoria}
               <span class="text-xs">✦</span>
